@@ -40,6 +40,14 @@
       const providerLabel = { 'OpenAI': 'OpenAI', 'Anthropic': 'Anthropic' };
       const agentLabel = { 'Codex': 'Codex', 'Claude Code': 'Claude Code' };
       const effortLabel = { 'xhigh': '최고 effort' };
+      // 런명(영문 식별자)을 사용자에게는 한국어 별칭으로 보여줍니다.
+      // 런명 자체는 비교 뷰어 URL 쿼리·데이터 키로 보존해야 하므로 select value 는 영문, 표시 텍스트만 한국어로 변경합니다.
+      const runDisplayName = {
+        'gpt-5.6-sol-xhigh-01': 'OpenAI · GPT-5.6 솔로 (Codex)',
+        'fable-5.1-xhigh-01': 'Anthropic · Fable 5.1 (Claude Code)',
+        'gpt-astra-xhigh-01': 'OpenAI · GPT-Astra (Codex)',
+        'opus-5-xhigh-02': 'Anthropic · Opus 5 (Claude Code)',
+      };
 
       const formatStartedAt = value => {
         if (!value) return '알 수 없음';
@@ -68,7 +76,7 @@
         const link = section.querySelector('a');
         const frame = section.querySelector('iframe');
 
-        runs.forEach((run, index) => select.add(new Option(run.name, index)));
+        runs.forEach((run, index) => select.add(new Option(runDisplayName[run.name] || run.name, index)));
         select.value = Math.min(selectedIndex, runs.length - 1);
 
         const show = () => {

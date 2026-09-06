@@ -5,7 +5,10 @@ import { SQ, CHURCH, CHURCH_CENTER, MONUMENT, ARCH, FOUNTAIN, STREETS, polylineS
 
 // 거리 영문 식별자(STREETS 레코드의 name 키)는 그대로 보존하고,
 // 사용자에게 보이는 라벨만 한국어(루마니아어 표기 포함)로 표시합니다.
+// 매핑에 없는 거리(STREETS 배열에는 있지만 아래 표에 없는 경우)는
+// 사용자에게 라벨이 노출되지 않도록 skip 처리됩니다(STREET_NAMES 매핑 누락 가드).
 const STREET_NAMES = {
+  // 광장에서 사방으로 뻗어나가는 주요 거리
   Eroilor: '에로이러르 대로 (Bulevardul Eroilor)',
   'Iuliu Maniu': '이울리우 마니우 거리 (Strada Iuliu Maniu)',
   'Regele Ferdinand': '레겔레 페르디난드 거리 (Strada Regele Ferdinand)',
@@ -14,6 +17,36 @@ const STREET_NAMES = {
   Napoca: '나포카 거리 (Strada Napoca)',
   Universitatii: '우니베르시타치이 거리 (Strada Universității)',
   'Matei Corvin': '마테이 코르빈 거리 (Strada Matei Corvin)',
+
+  // 외곽 구시가지로 이어지는 부차 거리
+  Kogalniceanu: '코갈니차누 거리 (Strada Mihail Kogălniceanu)',
+  'Baba Novac': '바바 노박 거리 (Strada Baba Novac)',
+  'Emil Isac': '에밀 이사크 거리 (Strada Emil Isac)',
+  Bolyai: '볼리아이 거리 (Strada Bolyai)',
+  'Hermann Oberth': '헤르만 오베르트 거리 (Strada Hermann Oberth)',
+  'Horea link': '호레아 연결로 (pasajul Horea)',
+  'Sextil Puscariu': '섹스틸 푸스카리우 거리 (Strada Sextil Pușcariu)',
+  'Avram Iancu ring': '아브람 얀쿠 외곽로 (Bulevardul Avram Iancu)',
+  Brassai: '브라샤이 거리 (Strada Brassai Sámuel)',
+  Potaissa: '포타이사 거리 (Strada Potaissa)',
+  'Cuza Voda': '쿠자 보더 거리 (Strada Cuza Vodă)',
+  'David Ferenc': '다비드 페렌츠 거리 (Strada David Ferenc)',
+  'Ion Ratiu': '이온 라치우 거리 (Strada Ion Rațiu)',
+  Dorobantilor: '도로반칠로르 거리 (Strada Dorobanților)',
+  Horea: '호레아 거리 (Strada Horea)',
+  Motilor: '모칠로르 거리 (Strada Moților)',
+  Republicii: '레푸블리치이 거리 (Strada Republicii)',
+  Clinicilor: '클리니칠로르 거리 (Strada Clinicilor)',
+  Pasteur: '파스퇴르 거리 (Strada Louis Pasteur)',
+  Traian: '트라얀 거리 (Strada Traian)',
+  'Splaiul Independentei': '스플라이울 인데펜덴체이 (Splaiul Independenței)',
+  'Cardinal Hossu': '카르디날 호수 거리 (Strada Cardinal Hossu)',
+
+  // 광장 외곽 링
+  'Ring N': '북측 외곽링 (centura nordică)',
+  'Ring S': '남측 외곽링 (centura sudică)',
+  'Ring W': '서측 외곽링 (centura vestică)',
+  'Ring E': '동측 외곽링 (centura estică)',
 };
 
 const _v = new THREE.Vector3();
