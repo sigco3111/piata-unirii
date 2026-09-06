@@ -1,635 +1,609 @@
-#### OBJECTIVE
+## 목표
 
-Create a breathtaking, high-definition voxel-art simulation of **Piața Unirii in Cluj-Napoca, Romania**, faithfully recreating the historic central square and its immediate urban surroundings.
+루마니아 **클루즈나포카(Cluj-Napoca)의 Piața Unirii(통일광장)** 를 정교하고 사실적인 **고해상도 복셀 아트 시뮬레이션**으로 만들어 주세요. 역사적인 중심 광장과 그 인접 가로환경까지 충실하게 재현해야 합니다.
 
-The scene should depict **present-day Piața Unirii**, viewed as a richly detailed miniature living city rather than a generic European square.
+장면은 **현재의 Piața Unirii** 를, 어디서나 흔히 볼 수 있는 평범한 유럽 광장이 아니라 **풍부한 디테일을 갖춘 살아있는 미니어처 도시** 처럼 보여야 합니다.
 
-The visual composition must be anchored by:
+시각적 구도(構圖)는 다음 다섯 가지에 의해 고정됩니다:
 
-1. **St. Michael’s Church (Biserica Sfântul Mihail)** as the dominant centerpiece.
-2. The **Matthias Corvinus / Matei Corvin Monumental Ensemble** immediately south of the church.
-3. The large rectangular pedestrian square surrounding them.
-4. The continuous historic façades enclosing all four sides of the square.
-5. The streets of central Cluj radiating outward between the surrounding buildings.
+1. **성 미하일 성당(Biserica Sfântul Mihail)** — 가장 압도적인 중앙 랜드마크.
+2. **마차이 코르비누스 / 마테이 코르빈 동상대(Matthias Corvinus Monumental Ensemble)** — 성당 바로 남쪽.
+3. 그것들을 둘러싼 **큰 직사각형형 보도 광장**.
+5. 광장 네 면을 둘러싼 **이어지는 역사적 파사드들**.
+4. 광장 바깥으로 뻗어나가는 **클루즈 도심의 거리들**.
 
-The result should feel immediately recognizable as **Cluj-Napoca's Piața Unirii**, even when viewed without labels.
+라벨 없이 봐도 즉시 **클루즈나포카의 Piața Unirii** 라고 알아볼 수 있어야 합니다. 절차적 무작위성보다 **지리적·건축적 인식 가능성** 을 우선하세요.
 
-Prioritize geographic and architectural recognizability over procedural randomness.
+## 사용자 조작
 
+- **카메라:** “갓 모드(God-mode)” 궤도 컨트롤.
+  - 좌클릭: 회전
+  - 우클릭: 팬(이동)
+  - 스크롤: 줌
 
-#### USER CONTROLS
+- **단축키:**
+  - **[R]** 카메라를 성 미하일 성당과 마차이 코르비누스 동상에 다시 중심 잡기
+  - **[F]** 시네마틱 플라이오버 토글 — 옥상 높이에서 천천히 광장을 선회하다가 항공 뷰로 솟아오름
+  - **[T]** 시간대 토글 — 맑은 낮 / 골든아워 노을
+  - **[V]** 거리 수준 / 항공 뷰 카메라 프리셋 토글
+  - **[L]** 떠 있는 랜드마크 라벨 토글
 
-- **Camera:** "God-mode" orbit controls:
-  - Left-click: rotate
-  - Right-click: pan
-  - Scroll: zoom
+## 선택적 랜드마크 라벨
 
-- **Shortcuts:**
-  - **[R]** Re-centre camera on St. Michael’s Church and the Matthias Corvinus monument.
-  - **[F]** Toggle cinematic flyover mode: slowly orbit the square at rooftop height, then rise into an aerial view.
-  - **[T]** Toggle Time of Day: Clear Day / Golden-Hour Sunset.
-  - **[V]** Toggle street-level / aerial overview camera presets.
-  - **[L]** Toggle floating landmark labels.
+주요 건물과 시설에 대해 **떠 있는(floating) 라벨 옵션** 세트를 제공합니다.
 
+- 기본적으로는 숨겨져 있으며 **[L]** 키로 토글합니다.
+- 라벨은 대응되는 **세계 좌표(월드 위치)에 고정**되고 **카메라를 향해** 정렬됩니다.
+- 라벨은 미니어처 건축 모형의 미감과 어울리게 **차분하고, 가독성 있게, 시각적으로 일관**되게 만드세요.
+- 지나친 겹침은 피하고, **화면 밖이거나 너무 멀리 있는 라벨은 숨기세요**.
+- 라벨은 **실제로 의미 있는 명명 랜드마크만** 표시하세요. 예:
+  - 성 미하일 성당(St. Michael’s Church);
+  - 마차이 코르비누스 동상(Matthias Corvinus Monument);
+  - 반피 궁전(Bánffy Palace);
+  - 미러 빌딩(Mirror Buildings);
+  - 구 호텔 콘티넨탈(former Hotel Continental);
+  - 로마 나포카(rōman Napoca) 발굴 창;
+  - 남쪽 분수대;
+  - 필요할 경우 주요 명명 거리들.
+- 라벨은 정보 보조 도구일 뿐, **지리적·건축적 인식 가능성 자체를 대체하지 않습니다**.
 
-#### OPTIONAL LANDMARK LABELS
+## 세계 스케일과 도시 지형
 
-Provide an optional set of floating labels for important recognizable buildings and features.
+### 요구사항: 충실한 비율, 견고한 지오메트리
 
-- Labels must be hidden by default and toggled with **[L]**.
-- Anchor labels to their corresponding world positions and keep them facing the camera.
-- Keep labels subtle, legible and visually consistent with the miniature architectural-model aesthetic.
-- Prevent excessive overlap and hide labels that are off-screen or too distant.
-- Label only significant named landmarks and features, including:
-  - St. Michael’s Church;
-  - Matthias Corvinus Monument;
-  - Bánffy Palace;
-  - Mirror Buildings;
-  - former Hotel Continental;
-  - Roman Napoca archaeological window;
-  - southern fountain area;
-  - major named streets where useful.
-- Labels are an informational aid, not a substitute for geographic or architectural recognizability.
+Piața Unirii 의 **실제 비율을 대략적으로** 재현하세요.
 
+- 광장 면적: 대략 **220 m × 160 m**.
+- 광장 주위의 역사적 건물들은 **거의 끊김 없이 이어지는 강한 도시 외벽** 을 형성해야 합니다.
+- 광장 안쪽의 지형은 대체로 평평하지만, 실제 세계의 **미세한 고저차** 가 드러나야 합니다.
+- 주변 도시는 광장 경계에서 갑자기 끝나지 말고 **여러 블록에 걸쳐 점진적으로** 이어져야 합니다.
 
-#### WORLD SCALE & URBAN TOPOGRAPHY
-##### Requirement: Faithful proportions, solid geometry
+클루즈의 역사 도심은 더 넓은 트란실바니아 분지 안에 자리 잡고 있습니다.
 
-Represent the real proportions of Piața Unirii approximately.
+- 인접 구시가지 너머에는 **클루즈를 둘러싼 완만한 숲과 도시화된 구릉** 이 멀리 배경으로 깔려야 합니다.
+- 이 구릉들은 Piața Unirii 를 압도하지 않도록 **미묘하고 멀게** 두세요.
+- 빨강/주황색 타일 지붕이 역사 도심의 **지배적인 톤** 이어야 합니다.
+- 멀리 후방에는 **가끔 더 높은 현대 건축물** 이 보여도 되지만, 광장 바로 주변에는 두지 마세요.
 
-- Square footprint: roughly **220 m × 160 m**.
-- The historic buildings around the square should form a strong, almost continuous urban wall.
-- The terrain inside the square is mostly level but should include subtle real-world elevation variation.
-- The surrounding city should gradually extend for several blocks beyond the square rather than abruptly ending at its perimeter.
+## 단단한 지면
 
-The historic centre of Cluj lies inside a broader Transylvanian basin:
+지도 전체는 **빈 공간이 보이지 않는 연속된 단단한 복셀 지면 메시** 로 덮여야 합니다.
 
-- Beyond the immediate old town, create a distant backdrop of the gentle wooded and urbanized hills surrounding Cluj.
-- The hills should remain subtle and distant so they do not overpower Piața Unirii.
-- Red/orange tiled roofs should dominate the historic centre.
-- Occasional taller modern buildings may appear far in the background, but NOT immediately around the square.
+복셀 재질로 표면을 구분하세요.
 
+- Piața Unirii 전체에 **옅은 회색·베이지 자연석 포장**;
+- 광장 둘레에는 **조금 더 어두운 석재 도로면**;
+- **좁은 연석(curb)**;
+- 성 미하일 성당 주변에는 **작은 잔디 구역**;
+- 주변 역사 도심으로 향하는 **석재 보행자 도로**.
 
-#### SOLID GROUND
+**너무 큰 자갈(코블스톤)** 은 피하세요. 이 광장은 매끄러운 자연석으로 깐 **넓고 격조 있는 유럽식 보도 광장** 처럼 읽혀야 합니다.
 
-The entire map must use a continuous solid voxel ground mesh with no visible voids.
+## 중앙 랜드마크
 
-Differentiate surfaces using voxel materials:
+### 성 미하일 성당 — Biserica Sfântul Mihail
 
-- pale grey and beige natural stone paving throughout Piața Unirii;
-- slightly darker stone roadway surfaces around the perimeter;
-- narrow curbs;
-- small grass zones immediately around St. Michael’s Church;
-- stone pedestrian streets leading toward the surrounding historic centre.
+이 건물은 시뮬레이션에서 **가장 정교한 객체** 여야 합니다.
 
-Avoid oversized cobblestones. The plaza should read primarily as a broad, refined European pedestrian square paved with relatively smooth natural stone.
+성당은 주변 일반 건물보다 **더 미세한 복셀 스케일** 을 사용하세요.
 
+고딕 양식의 **독특한 매싱(massing)** 을 충실히 재현하세요.
 
-#### CENTRAL LANDMARK
-### ST. MICHAEL’S CHURCH — Biserica Sfântul Mihail
+- 거대한 길이의 **고딕 본당(nave)**;
+- **옅은 베이지 색의 키 큰 석재 외벽**;
+- 또렷하게 드러나는 **고딕 부력벽(buttress)**;
+- **키 큰 첨예 아치 창**;
+- 더 작은 복셀로 암시하는 **얇은 트레이서리(tracery) 디테일**;
+- 가파르고 거대한 **붉은-주황 점토 타일 지붕**;
+- **다각형(polygonal) 고딕 후진(apse)**;
+- 장엄한 **서쪽 파사드**;
+- 시계와 종탑을 포함한 **약 80 m 높이의 극도로 키 큰 네오-고딕 종탑**;
+- 십자가로 끝나는 **가는 첨탑(spire)**;
+- **보이는 시계면**;
+- 종탑 상부의 **고딕 개구부와 장식 석조**.
 
-This must be the most detailed object in the simulation.
+성당은 주변 모든 것보다 **현저하게 높아야** 합니다.
 
-Use a finer voxel scale for the church than for ordinary buildings.
+**절대 대칭적인 쌍둥이 탑을 가진 평범한 대성당처럼 만들지 마세요.**
 
-Accurately reproduce its distinctive massing:
+**하나의 우뚝 솟은 단일 종탑 + 거대한 붉은 지붕** 은 Piața Unirii 에서 **성 미하일 성당을 알아보는 결정적 단서** 입니다.
 
-- enormous elongated Gothic nave;
-- tall pale-beige stone exterior;
-- strongly articulated Gothic buttresses;
-- tall pointed-arch windows;
-- narrow tracery details suggested through smaller voxels;
-- steep, enormous reddish-orange clay-tile roof;
-- polygonal Gothic apse;
-- monumental west façade;
-- extremely tall **neo-Gothic bell and clock tower**, approximately 80 m including the spire;
-- slender pointed spire capped with a cross;
-- visible clock faces;
-- Gothic openings and ornamental stonework on the upper tower.
+### 교회 부지(Grounds)
 
-The church should feel exceptionally tall compared with everything surrounding it.
+성당의 일부를 둘러싼 **작은 녹지** 를 만드세요.
 
-Do NOT make it look like a generic cathedral with symmetrical twin towers.
+포함 요소:
 
-The characteristic **single dominant tower and huge red roof** are essential to recognizing St. Michael’s Church.
+- 잘 가꾸어진 **잔디밭**;
+- 몇 그루의 **다 자란 활엽수**;
+- 성당 주위의 **산책로**;
+- **벤치**;
+- **은은한 지면 조명**;
+- 구조물 주변을 걷는 **보행자들**.
 
+식생은 절제해서, 고딕 건축이 한눈에 드러나게 두세요.
 
-#### CHURCH GROUNDS
+## 마차이 코르비누스 / 마테이 코르빈 동상
 
-Create the small green areas immediately surrounding portions of the church.
+### 2차 중심점
 
-Include:
+동상은 역사적으로 잘 알려진 위치 그대로, **성 미하일 성당의 남쪽 파사드에 정렬**해 배치하세요.
 
-- maintained grass;
-- a few mature deciduous trees;
-- paths around the church;
-- benches;
-- subtle ground lighting;
-- pedestrians walking around the structure.
+**고해상도의 복셀로** 이 앙상블을 만드세요.
 
-Keep vegetation restrained so the Gothic architecture remains clearly visible.
+포함 요소:
 
+- **크고 직사각형의 밝은 석재 대좌(pedestal)**;
+- 마차이 코르비누스 왕의 **다크 브론즈 기마상**;
+- 광장 위에서 **당당히 서 있는 말**;
+- 역사적 갑옷·예복을 갖춘 왕;
+- 대좌 주변에 배치된 **네 개의 추가 브론즈 역사 인물상**;
+- 소규모 복셀 군집으로 암시하는 **무기, 깃발, 갑옷**;
+- 미묘한 **다크 브론즈 / 오래된 녹청(patina) 톤 변화**.
 
-#### MATTHIAS CORVINUS / MATEI CORVIN MONUMENT
-### Secondary Centerpiece
+동상은 항공 뷰에서도 **묵직하고 또렷이 읽혀야** 합니다.
 
-Place the monument **directly south of St. Michael’s Church**, in its historically recognizable position, aligned against the church’s huge southern façade.
+**절대 단일 기마상으로 일반화하지 마세요.**
 
-Build the ensemble at high voxel resolution.
+## 로마 나포카 발굴 창(Archaeological Window)
 
-Include:
+동상 가까이에, **광장 포장면에 박힌 작은 발굴 전시** 를 재현하세요.
 
-- a massive rectangular pale stone pedestal;
-- dark bronze equestrian statue of King Matthias Corvinus;
-- horse standing powerfully above the square;
-- king in historical armor / ceremonial clothing;
-- four additional bronze historical figures positioned around the base;
-- weapons, banners and armor suggested using small voxel clusters;
-- subtle dark bronze / aged green patina variation.
+만들 요소:
 
-The monument must be substantial and clearly readable from aerial views.
+- 포장면 안으로 파인 **가로 방향의 직사각형 유리창**;
+- 유리 **주위의 어두운 테두리 프레임**;
+- 표면 아래로 보이는 **로마 석조 기초**;
+- 유리 아래의 **은은한 따뜻한 조명**;
+- 주변의 **벤치 / 좌식 모서리**.
 
-Do NOT replace it with a generic single equestrian statue.
+이는 **주요 구조물이 아니라 작은 디테일** 이지만, 카메라가 광장에 접근하면 보여야 합니다.
 
+## 광장 둘레의 역사적 건물들
 
-#### ROMAN NAPOCA ARCHAEOLOGICAL WINDOW
+Piața Unirii 의 건물들은 필수입니다.
 
-Near the monument, reproduce the small archaeological display embedded into the plaza.
+**광장 주위에 일반적인 유럽 가옥을 무작위로 만들지 마세요.**
 
-Create:
+Piața Unirii 의 네 면을 따라 **개별 파사드, 지붕 형태, 창문, 장식 요소** 를 사용해 **역사적으로 영감을 받은 클루즈 파사드** 의 연속 둘레를 만드세요. **2~4층 높이** 가 일반적입니다.
 
-- a horizontal rectangular glass-covered opening in the paving;
-- dark framing around the glass;
-- visible Roman masonry foundations beneath the surface;
-- subtle warm illumination below the glass;
-- a surrounding bench / seating edge.
+건축 어휘에는 다음이 포함되어야 합니다:
 
-This should be a small detail, not a major structure, but visible when the camera approaches the square.
+- 바로크;
+- 르네상스 잔재;
+- 신고전;
+- 역사주의(Historicist);
+- eclectic 19세기 후반 건축;
+- 절제된 세세션(Art Nouveau) 영향.
 
+대표적인 재료:
 
-#### THE HISTORIC BUILDINGS SURROUNDING THE SQUARE
+- 크림색 플라스터;
+- 옅은 노란색;
+- 황토색;
+- 연한 베이지;
+- 절제된 핑크;
+- 옅은 회색;
+- 바랜 그린;
+- 화이트 스톤 액센트;
+- 붉은·주황색 도자기 타일 지붕.
 
-The buildings around Piața Unirii are essential.
+포함 요소:
 
-Do NOT generate random generic European houses around the square.
+- **키 큰 수직 창**;
+- **정교한 코니스(cornice)**;
+- **석재 창틀**;
+- **발코니**;
+- **아치형 1층 출입구**;
+- **상점과 카페**;
+- **굴뚝**;
+- **도르머(dormer)**;
+- **경사진 타일 지붕**.
 
-Create a continuous perimeter of historically inspired Cluj façades, generally **2–4 floors high**, using individual façades, roof shapes, windows and decorative features.
+### 동쪽 — 반피 궁전(Bánffy Palace)
 
-Architectural vocabulary should include:
+광장 둘레에서 가장 중요한 건물 중 하나인 **반피 궁전** 에 특별한 대우를 하세요.
 
-- Baroque;
-- Renaissance remnants;
-- Neoclassical;
-- Historicist;
-- Eclectic late-19th-century architecture;
-- restrained Secession / Art Nouveau influences.
+표현 요소:
 
-Typical materials:
+- **당당한 바로크 궁전 비율**;
+- **넓고 대칭적인 파사드**;
+- **밝은 석재 / 크림색 외벽**;
+- **강하게 강조된 중앙부**;
+- **장엄한 아치형 출입구**;
+- **상층 로그gia / 기둥 리듬**;
+- 상부 파사드와 지붕선을 따라 늘어선 **조각상 및 장식 디테일**;
+- 메인 파사드 뒤로 **내부 안뜰이 살짝 보이는 정황**.
 
-- cream plaster;
-- pale yellow;
-- ochre;
-- light beige;
-- muted pink;
-- pale grey;
-- faded green;
-- white stone accents;
-- reddish and orange ceramic roof tiles.
+주변 일반 건축물과 **분명히 구별** 되어야 합니다.
 
-Include:
+### 동남쪽 — 미러 빌딩(Mirror Buildings)
 
-- tall vertical windows;
-- elaborate cornices;
-- stone window surrounds;
-- balconies;
-- arched ground-floor entrances;
-- shopfronts and cafés;
-- chimneys;
-- dormers;
-- pitched tiled roofs.
+**Iuliu Maniu 거리** 입구에서, 거의 대칭인 한 쌍의 건물로 유명한 **미러 빌딩 / Palatele Statusului Romano-Catolic** 을 재현하세요.
 
+요구사항:
 
-### EAST SIDE — BÁNFFY PALACE
+- 서로 **맞은편에 마주 보고**;
+- 거리를 **관문처럼** 프레이밍;
+- **일치하는 파사드 리듬**;
+- 우아한 19세기 후반 역사주의 / 파리지향 건축;
+- **둥근 모서리 지오메트리**;
+- 정교한 **코너 지붕 구조 / 작은 돔 또는 헬멧 모양 지붕**.
 
-Give **Bánffy Palace** special treatment as one of the square’s most important surrounding buildings.
+이 **대칭이 명확히 보이도록** Iuliu Maniu 거리를 이 두 건물 너머로 여러 동 더 이어 이어가세요.
 
-Represent:
+### 남쪽
 
-- imposing Baroque palace proportions;
-- broad symmetrical façade;
-- pale stone / cream exterior;
-- strongly emphasized central section;
-- grand arched entrance;
-- upper-level loggia / column rhythm;
-- statues and sculptural details along the upper façade and roofline;
-- inner courtyard suggested behind the main façade.
+다음을 인식 가능한 모습으로 포함하세요:
 
-It should visibly stand apart from ordinary surrounding townhouses.
+- 구 시청 / **카사 스파툴루이(Casa Sfatului)**;
+- 역사적인 **국립은행 건물**;
+- 인접한 역사적 파사드들.
 
+건물을 고립시키지 말고, **연속적인 거리 외벽을 유지** 하세요.
 
-### EAST / SOUTHEAST — THE MIRROR BUILDINGS
+### 남서쪽 모서리 — 구 호텔 콘티넨탈(former Hotel Continental)
 
-At the entrance to **Iuliu Maniu Street**, reproduce the famous pair of nearly symmetrical buildings known as the **Mirror Buildings / Palatele Statusului Romano-Catolic**.
+광장의 남서쪽 모서리를 시각적으로 고정하는, 두드러진 코너 랜드마크로 **구 호텔 콘티넨탈 / 뉴욕 호텔(New York Hotel)** 을 만드세요.
 
-They should:
+요소:
 
-- stand opposite one another;
-- frame the street like a gateway;
-- use matching façade rhythms;
-- have elegant late-19th-century Historicist / Parisian-inspired architecture;
-- use rounded corner geometry;
-- include ornate corner roof structures / small domed or helmet-like roof features.
+- 19세기 후반 **대형 도시 호텔의 비율**;
+- **정교하게 장식된 역사주의 파사드**;
+- **둥근 코너 처리**;
+- **키 큰 창이 줄지어 늘어선** 면;
+- **발코니와 정교한 석재/플라스터 디테일**;
+- **어두운 만사르(mansard) 지붕 구간과 화려한 지붕선**.
 
-Continue Iuliu Maniu Street for several buildings beyond them so the symmetry is clearly visible.
+코너 위치가 **광장 남서쪽 끝을 시각적으로 잡아줘야** 합니다.
 
+### 서쪽
 
-### SOUTH SIDE
+**서쪽 정면** 을 다음에서 영감을 받은 별개의 파사드로 표현하세요:
 
-Include recognizable representations of:
+- 레데이 궁전(Rhédey Palace);
+- 요시카 궁전(Jósika Palace);
+- 바스 하우스(Wass House);
+- 가톨릭 교구 건물들.
 
-- the **Old Town Hall / Casa Sfatului**;
-- the historic National Bank building;
-- adjoining historic façades.
+이 면이 **수 세기에 걸쳐 쌓여온 느낌** 이 들도록, 폭·높이가 불규칙하고 건축적 차이가 있도록 만드세요.
 
-Maintain the continuous street wall rather than isolating these buildings.
+### 북쪽
 
+다음의 시각적 참조를 포함한 역사 건물 **밀도 높은 행** 을 만드세요:
 
-### SOUTHWEST CORNER — FORMER HOTEL CONTINENTAL
+- 마우크시-힌츠 하우스(Mauksch-Hintz House);
+- 케메니 궁전(Kemény Palace);
+- 루치카 하우스(Rucska House);
+- 인근 역사적 타운하우스들.
 
-Create the former **Hotel Continental / New York Hotel** as a prominent corner landmark.
+다양한 파사드 폭, 지붕 높이, 창 간격, 미묘한 색채 차이를 사용하세요.
 
-It should feature:
+## 광장 조경 및 공공 공간
 
-- large late-19th-century urban-hotel proportions;
-- richly decorated Historicist façade;
-- rounded corner treatment;
-- rows of tall windows;
-- balconies and ornamental stone/plaster details;
-- dark mansard-like roof sections and elaborate roofline.
+Piața Unirii 는 **넉넉하고 보행자 중심** 으로 느껴져야 합니다.
 
-Its corner position must visually anchor the southwest edge of the square.
+포함 요소:
 
+- **넓은 자연석 포장면**;
+- 광장 구획을 정의하는 **다 자란 활엽수 열식**;
+- 둘레 일부의 **보리수(linden) 같은 나무**;
+- 여러 그루의 **큰 양버즘나무(sycamore) 같은 나무**;
+- **벤치**;
+- 좌석 겸용 **낮은 석재 단차(계단석)**;
+- 절제된 **현대식 가로등**;
+- **우산이 있는 카페 테라스**;
+- **자전거**;
+- 작은 표지판과 거리 가구.
 
-### WEST SIDE
+**식생으로 열린 공간을 채우지 마세요.**
 
-Represent the historic western frontage with distinct façades inspired by:
+광장의 성격을 결정짓는 핵심은 **대단위로 끊김 없이 펼쳐지는 석재 포장** 입니다.
 
-- Rhédey Palace;
-- Jósika Palace;
-- Wass House;
-- Roman Catholic parish buildings.
+## 남쪽 분수대
 
-Include irregular historical widths and architectural differences so this side feels accumulated over centuries rather than procedurally repetitive.
+광장 남쪽에 **현대적 분수 설치물** 을 만드세요.
 
+사용 요소:
 
-### NORTH SIDE
+- **얕은 기하학적 수면**;
+- **지면과 같은 높이로 분사되는 분수 노즐**;
+- **작은 반사형 물 테이블**;
+- **석재 테두리**;
+- 물가에 **가끔 보이는 어린이 / 보행자**.
 
-Create a dense row of historic buildings including visual references to:
+물은 밝은 만화 청색이 아니라 **반투명·반사형의 푸른-회색 복셀 재질** 로 표현하세요.
 
-- Mauksch-Hintz House;
-- Kemény Palace;
-- Rucska House;
-- neighbouring historic townhouses.
+## 주변 도로망
 
-Use varied façade widths, roof heights, window spacing and subtle color differences.
+광장은 클루즈 구시가지에 자연스럽게 통합되어야 합니다.
 
+광장 모서리와 가장자리에서 **바깥으로 향하는 거리** 를 열어 주세요.
 
-#### SQUARE LANDSCAPING & PUBLIC SPACE
+주요 방향을 다음 방향으로 시각적으로 암시하세요:
 
-Piața Unirii should feel spacious and pedestrian-oriented.
+- 동남쪽 — **Bulevardul Eroilor**;
+- 동쪽 — **Iuliu Maniu 거리**;
+- 북동쪽 — **Regele Ferdinand / 21 Decembrie** 지역;
+- 북서쪽 — **Memorandumului / Matei Corvin** 지역;
+- 남서쪽 — **Napoca / Universității** 거리.
 
-Include:
+이 거리들을 따라 **여러 블록** 을 이어서 만드세요.
 
-- broad natural-stone paved areas;
-- rows of mature deciduous trees defining sections of the square;
-- linden-like trees along parts of the perimeter;
-- several larger sycamore-like trees;
-- benches;
-- low stone steps that double as seating;
-- discrete modern street lamps;
-- café terraces with umbrellas;
-- bicycles;
-- small signs and urban furniture.
+완벽한 격자가 아니라, **불규칙한 중세/역사 도시 지오메트리** 를 사용하세요.
 
-Do NOT fill the open space with vegetation.
+## 도시 계획 로직
 
-Large uninterrupted areas of stone paving are crucial to the character of Piața Unirii.
+### 요구사항: 겹침 없음(No Overlap)
 
+**바운딩 박스 / 점유 그리드** 할당 시스템을 사용하세요.
 
-#### SOUTHERN FOUNTAIN AREA
+원래의 로마 도시 생성과 달리, 주요 구조물은 **실제 광장에 가까운 고정된 사전 정의 위치** 를 차지해야 합니다.
 
-Near the southern portion of the square create the contemporary fountain installation.
+### 고정 랜드마크
 
-Use:
+**구역 A — 중앙**
+- 성 미하일 성당
+- 교회 부지
 
-- shallow geometric water surfaces;
-- flush ground-level water jets;
-- small reflective water tables;
-- stone edges;
-- occasional children / pedestrians near the water.
+**구역 B — 남-중앙**
+- 마차이 코르비누스 동상
+- 로마 발굴 창
 
-Water should use reflective or semi-transparent blue-grey voxel materials rather than bright cartoon blue.
+**구역 C — 둘레**
+- Piața Unirii 의 네 면을 형성하는 역사적으로 영감을 받은 파사드들
 
+**구역 D — 외곽 역사 도심**
+- 클루즈 구시가지 거리 패턴의 밀도 높은 연속
 
-#### SURROUNDING STREET NETWORK
+모든 2차 건물에 대해:
 
-The square must integrate naturally into Cluj's old town.
+1. 바닥면을 미리 예약(reserve)하고,
+2. 충돌을 테스트하고,
+3. 거리 정면을 유지하고,
+4. 파사드를 실제 둘레 도로에 정렬하고,
+5. 중앙 광장 안에 무작위 건물이 나타나지 않도록 하세요.
 
-Open streets outward from the corners and edges of the square.
+## 인구(보행자)
 
-Important directions should visually suggest:
+광장은 **살아있지만 한적하게** 느껴져야 합니다.
 
-- **Bulevardul Eroilor** toward the southeast;
-- **Iuliu Maniu Street** toward the east;
-- **Regele Ferdinand / 21 Decembrie area** toward the northeast;
-- **Memorandumului / Matei Corvin area** toward the northwest;
-- **Napoca / Universității streets** toward the southwest.
+절차적으로 다음을 채워 넣으세요:
 
-Generate several blocks along these streets.
+- 혼자 또는 소그룹으로 걷는 **보행자들**;
+- 성당·동상을 사진 찍는 **관광객들**;
+- 벤치에 앉아 있는 사람들;
+- **카페 손님**;
+- **자전거 타는 사람**;
+- 가끔 보이는 **배달 자전거**;
+- 분수대 근처의 **어린이**;
+- 소수의 **비둘기**.
 
-Use slightly irregular medieval / historic urban geometry rather than a perfect grid.
+다양한 의상을 갖춘 **작지만 관절이 표현된 복셀 인물** 을 사용하세요.
 
+**거대한 축제 군중은 피하세요.**
 
-#### CITY PLANNING LOGIC
-##### Requirement: No Overlap
+보통 모드는 **클루즈 도심의 평범하고 즐거운 하루** 를 표현해야 합니다.
 
-Use a bounding-box / occupancy-grid allocation system.
+## 차량
 
-Unlike the original Roman-city generation, the principal structures should occupy **fixed predefined positions based approximately on the real square**.
+**중앙 보행자 구역은 거의 차 없이** 유지하세요.
 
-### Fixed landmarks
+둘레 거리에는 다음을 절제된 수로 배치하세요:
 
-**Zone A — Central**
-- St. Michael’s Church
-- church grounds
+- **컴팩트한 유럽 차**;
+- **택시**;
+- **배달 밴**;
+- 멀리서 보이는 **버스**.
 
-**Zone B — South-Central**
-- Matthias Corvinus Monument
-- Roman archaeological window
+차는 반드시 **거리 지오메트리를 따라** 주행하고, 보행자 구역에는 절대 진입하지 마세요.
 
-**Zone C — Perimeter**
-- historically inspired façades forming the four sides of Piața Unirii
+## 식생
 
-**Zone D — Outer Historic Centre**
-- dense continuation of Cluj’s old-town street fabric
+**중/동유럽 도시 광장 전형적인** 식생을 사용하세요.
 
-For every secondary building:
+선호하는 종:
 
-1. reserve its footprint;
-2. test collisions;
-3. maintain street frontage;
-4. align façades with the actual perimeter roads;
-5. prevent random buildings from appearing inside the central plaza.
+- 다 자란 **보리수(linden)**;
+- **양버즘나무/플라네타리(plane) 같은 나무**;
+- 작은 관상용 **활엽수**;
+- 성당 주변의 **정돈된 잔디**;
+- 가끔 보이는 **화분 식물**.
 
+**지중해 사이프러스, 우산 소나무, 올리브 나무는 사용하지 마세요.**
 
-#### POPULATION
+나무는 막대 위에 단순한 큐브를 얹은 것이 아니라, **복셀 군집으로 만든 유기적인 분지** 를 가져야 합니다.
 
-The square should feel alive but relaxed.
+## 멀리 보이는 클루즈 스카이라인
 
-Procedurally populate it with:
+구시가지 지붕 너머로 **클루즈나포카의 광역 지리** 를 미묘하게 표현하세요.
 
-- pedestrians walking individually and in small groups;
-- tourists photographing the church and statue;
-- people sitting on benches;
-- café patrons;
-- cyclists;
-- occasional delivery bicycles;
-- children near the fountain;
-- a small number of pigeons.
+포함 요소:
 
-Use small articulated voxel characters with varied clothing.
+- **멀리 보이는 완만한 구릉**;
+- 숲 패치;
+- 구릉 비탈의 **밀도 높은 주거지**;
+- 몇 동의 **멀리 보이는 현대 아파트 단지**;
+- 선택한 카메라 각도에서 보이는 경우 **북쪽의 체타치아(Cetățuia) 언덕의 미묘한 힌트**.
 
-Avoid huge festival crowds.
+**역사 광장이 시각적으로 압도적으로 우위** 를 차지하도록 유지하세요.
 
-Normal mode should represent a pleasant ordinary day in central Cluj.
+## 시각적 충실도
 
+### 전체 스타일
 
-#### VEHICLES
+**고해상도·정교한 복셀 아트** 를 지향하세요.
 
-Keep the central pedestrian zone largely car-free.
+이미지:
 
-On surrounding streets place restrained numbers of:
+**건축 스케일 모형 + 정교한 복셀 도시 + 시네마틱 미니어처 사진** 처럼.
 
-- compact European cars;
-- taxis;
-- delivery vans;
-- buses visible farther away.
+**Minecraft 스타일은 피하세요.**
 
-Cars must follow the street geometry and never enter pedestrian sections.
+다음 요소에는 **복셀 스케일을 눈에 띄게 더 작게** 적용하세요:
 
+- 성 미하일 성당;
+- 마차이 코르비누스 동상;
+- 반피 궁전;
+- 정교한 파사드들;
+- 나무;
+- 거리 가구.
 
-#### VEGETATION
+보통 거리에서 봤을 때 건물은 복셀이더라도 **매끄럽고 인식 가능한 실루엣** 을 보여야 합니다.
 
-Use vegetation typical of an urban Central/Eastern European square.
+## 팔레트
 
-Prefer:
+**트란실바니아 / 중유럽 전형의 팔레트** 를 사용하세요.
 
-- mature lindens;
-- sycamores / plane-like trees;
-- small ornamental deciduous trees;
-- carefully maintained grass around the church;
-- occasional planter vegetation.
+건축:
 
-Do NOT use Mediterranean cypress, umbrella pine or olive trees.
+- 따뜻한 **라임스톤 베이지**;
+- **바랜 회색 석재**;
+- 크림색;
+- 아이보리;
+- **파스텔 옐로우**;
+- 절제된 **황토**;
+- **더스티 핑크**;
+- **옅은 그린**;
+- **소프트 그레이**.
 
-Trees should have organic branching made from grouped voxels rather than simple cubes on sticks.
+지붕:
 
+- **번트 오렌지**;
+- 테라코타;
+- **다크 러스트**;
+- **바랜 레드**;
+- 가끔 보이는 **다크 그레이 메탈 지붕**.
 
-#### DISTANT CLUJ SKYLINE
+성당:
 
-Beyond the old-town roofs, subtly represent the broader geography of Cluj-Napoca.
+- **바랜 옅은 라임스톤**;
+- **짙은 적-주황 타일 지붕**;
+- **더 어두운 바랜 고딕 후미진 곳들**.
 
-Include:
+동상:
 
-- rolling hills in the distance;
-- patches of forest;
-- dense residential neighbourhoods climbing portions of the hillsides;
-- a few distant modern apartment blocks;
-- subtle hints of Cetățuia / northern hills if visible from the selected camera angle.
+- **밝은 석재 대좌**;
+- **다크 산화 브론즈**.
 
-Keep the historical square visually dominant.
+식생:
 
+- **사실적인 절제된 그린**.
 
-#### VISUAL FIDELITY
+**과포화된 색은 피하세요.**
 
-### Overall Style
+## 분위기
 
-High-definition, sophisticated voxel art.
+### 낮 모드
 
-Think:
+**늦은 봄 / 초가을의 트란실바니아 맑은 날** :
 
-**architectural scale model + detailed voxel city + cinematic miniature photography**
+- 파란 하늘;
+- 흩어진 **큰 흰 구름**;
+- **중간 정도의 따뜻한 햇빛**;
+- 강하지만 가장자리가 부드러운 **건축 그림자**;
+- **높은 가시거리**;
+- 멀리 구릉 너머로 미묘한 **대기 헤이즈**.
 
-rather than Minecraft.
+### 노을 모드
 
-Voxels should become significantly smaller for:
+역사적 건물 사이로 들어오는 **낮은 골든 햇빛** :
 
-- St. Michael’s Church;
-- Matthias Corvinus monument;
-- Bánffy Palace;
-- ornate façades;
-- trees;
-- street furniture.
+- **성 미하일 성당의 석재 위로 따뜻한 주황 조명**;
+- **붉게 빛나는 지붕들**;
+- **광장 위로 길게 늘어지는 그림자**;
+- **차분한 블루-그레이 그림자**;
+- **빛이 켜진 교회·가로등**;
+- 분수와 발굴 유리 표면의 **미묘한 반사**.
 
-From normal viewing distance, buildings should have smooth recognizable silhouettes despite being voxel-based.
+## 라이팅
 
+사용 요소:
 
-#### PALETTE
+- **방향성 햇빛**;
+- 헤미스피어 / 스카이라이트;
+- 스크린-스페이스 또는 근사 **앰비언트 오클루전**;
+- **소프트 컨택트 섀도**;
+- 코니스·부력벽 아래 **더 어두운 복셀 크리스**;
+- 미묘한 **저녁 발광 라이팅**.
 
-Use a characteristically Transylvanian / Central-European palette.
+성 미하일 성당의 **깊은 고딕 부력벽과 창 후면** 은 특히 강한 깊이감을 내야 합니다.
 
-Architecture:
+## 카메라 구도
 
-- warm limestone beige;
-- weathered grey stone;
-- cream;
-- ivory;
-- pastel yellow;
-- muted ochre;
-- dusty pink;
-- pale green;
-- soft grey.
+**초기 카메라는 남쪽 또는 남동쪽에서 높은 사선 항공 뷰** 로 광장을 가로질러 내려다보는 구도여야 합니다.
 
-Roofs:
+오프닝 컴포지션은 **동시에 다음을 보여줘야** 합니다:
 
-- burnt orange;
-- terracotta;
-- dark rust;
-- weathered red;
-- occasional dark grey metal roofs.
+- **전경의 마차이 코르비누스 동상**;
+- 그 바로 뒤에 있는 **성 미하일 성당의 거대한 남쪽 파사드**;
+- **지붕들 위로 극적으로 솟아오르는 성당 종탑**;
+- **반피 궁전과 동쪽 파사드들**;
+- **구 호텔 콘티넨탈과 서쪽 건물들**;
+- 광장 직사각형 면의 대부분;
+- 멀리 구릉까지 이어지는 **오렌지 지붕의 클루즈 시가지**.
 
-Church:
-
-- pale weathered limestone;
-- deep reddish-orange tile roof;
-- darker aged Gothic recesses.
-
-Monument:
-
-- pale stone pedestal;
-- dark oxidized bronze.
-
-Vegetation:
-
-- realistic muted greens.
-
-Avoid oversaturated colors.
-
-
-#### ATMOSPHERE
-
-### Day Mode
-
-Use a crisp late-spring / early-autumn Transylvanian day:
-
-- blue sky;
-- scattered large white clouds;
-- moderately warm sunlight;
-- strong but soft-edged architectural shadows;
-- high visibility;
-- subtle atmospheric haze over the distant hills.
-
-### Sunset Mode
-
-Use low golden sunlight entering between the historic buildings:
-
-- warm orange illumination on St. Michael’s stone;
-- glowing red roofs;
-- long shadows across the square;
-- cooler blue-grey shadows;
-- illuminated church and street lamps;
-- subtle reflections in the fountain and archaeological glass.
-
-
-#### LIGHTING
-
-Use:
-
-- directional sunlight;
-- hemisphere / skylight;
-- screen-space or approximated ambient occlusion;
-- soft contact shadows;
-- darker voxel creases beneath cornices and buttresses;
-- subtle evening emissive lighting.
-
-The deep Gothic buttresses and window recesses of St. Michael’s Church should produce especially strong depth.
-
-
-#### CAMERA COMPOSITION
-
-The initial camera view should be a **high oblique aerial perspective from the south or southeast**, looking across the square.
-
-The opening composition should simultaneously show:
-
-- Matthias Corvinus monument in the foreground;
-- the enormous south façade of St. Michael’s Church directly behind it;
-- the church tower rising dramatically above the rooftops;
-- Bánffy Palace and the east-side façades;
-- the former Continental Hotel and western buildings;
-- much of the rectangular plaza;
-- orange-roofed Cluj spreading into distant hills.
-
-This composition must immediately read as:
+이 컴포지션은 다음을 즉시 전달해야 합니다:
 
 **Piața Unirii, Cluj-Napoca.**
 
+## LOD 시스템
 
-#### LEVEL OF DETAIL SYSTEM
+**최소 3단계의 복셀 디테일 티어** 를 사용하세요.
 
-Use at least three voxel-detail tiers.
+### LOD 0 — 히어로 에셋
 
-### LOD 0 — Hero Assets
-Tiny voxels and maximum detail:
+**아주 작은 복셀, 최대 디테일**:
 
-- St. Michael’s Church;
-- Matthias Corvinus monument;
-- Bánffy Palace;
-- Mirror Buildings;
-- Continental Hotel.
+- 성 미하일 성당;
+- 마차이 코르비누스 동상;
+- 반피 궁전;
+- 미러 빌딩;
+- 호텔 콘티넨탈.
 
-### LOD 1 — Piața Unirii perimeter
-Medium-small voxels:
+### LOD 1 — Piața Unirii 둘레
 
-- all buildings directly facing the square;
-- trees;
-- fountains;
-- archaeological remains.
+**중-소형 복셀**:
 
-### LOD 2 — Background city
-Larger voxels and simplified geometry:
+- 광장에 정면으로 면한 모든 건물;
+- 나무;
+- 분수;
+- 발굴 잔재.
 
-- surrounding blocks;
-- distant roofs;
-- hills;
-- distant modern buildings.
+### LOD 2 — 배경 도시
 
-Transition LOD intelligently depending on camera distance.
+**더 큰 복셀과 단순화된 지오메트리**:
 
+- 주변 블록들;
+- 멀리 보이는 지붕들;
+- 구릉;
+- 멀리 보이는 현대 건물들.
 
-#### PROCEDURAL DETAILING
+카메라 거리에 따라 LOD 를 **지능적으로 전환** 하세요.
 
-Use deterministic seeded procedural generation so each run produces the same recognizable Piața Unirii layout while allowing small variations in:
+## 절차적 디테일링
 
-- pedestrians;
-- vehicles;
-- café furniture;
-- vegetation;
-- window lights;
-- rooftop details.
+**시드 기반의 결정론적 절차 생성** 을 사용해, 각 런이 동일한 인식 가능한 Piața Unirii 배치로 만들어지면서도 다음 요소에는 **작은 변주가** 허용되도록 하세요:
 
-The landmarks themselves must NOT change position or proportions between generations.
+- 보행자;
+- 차량;
+- 카페 가구;
+- 식생;
+- 창문 조명;
+- 옥상 디테일.
 
+**랜드마크 자체는 세대 간에 위치나 비율이 절대 바뀌어서는 안 됩니다.**
 
-#### TECHNICAL SPECIFICATIONS
+## 기술 사양
 
-- **Deliverable:** Provide the complete working implementation with `index.html` as the browser entry point.
-- **Offline only:** Deliver a self-contained offline folder. Local supporting files are allowed. NO external imports or CDNs.
-- Use only relative paths for local code and assets.
-- Target **>=55 FPS** on a modern desktop computer.
-- Use **InstancedMesh-style rendering / GPU instancing** for repeated voxels.
-- NEVER create a separate draw call for every voxel.
-- Merge static voxel geometry wherever appropriate.
-- Use different instancing pools for:
+- **산출물:** `index.html` 을 브라우저 진입점으로 하는 완전한 동작 구현을 제공하세요.
+- **오프라인 전용:** 자기완결 오프라인 폴더를 산출하세요. 로컬 보조 파일은 허용되지만 **외부 import 나 CDN 은 금지**.
+- 로컬 코드·자산은 **상대 경로만** 사용하세요.
+- 모던 데스크톱에서 **≥55 FPS** 를 목표로 하세요.
+- 반복되는 복셀은 **InstancedMesh-style 렌더링 / GPU 인스턴싱** 을 사용하세요.
+- **복셀마다 별도의 draw call 을 만들지 마세요.**
+- 정적 복셀 지오메트리는 가능한 한 **병합** 하세요.
+- 다음 각각에 대해 별도의 인스턴싱 풀을 사용하세요:
   - stone;
   - plaster;
   - terracotta;
@@ -638,86 +612,82 @@ The landmarks themselves must NOT change position or proportions between generat
   - pavement;
   - glass;
   - water.
-- Use a shared programmatically generated texture/material atlas.
-- Apply frustum culling.
-- Implement distance-based LOD.
-- Avoid generating hidden interior voxels for solid buildings.
-- Only visible exterior surfaces need voxel geometry unless specifically required.
+- 프로그래밍 방식으로 생성된 **공유 텍스처/머티리얼 아틀라스** 를 사용하세요.
+- **프러스텀 컬링** 을 적용하세요.
+- 거리 기반 **LOD** 를 구현하세요.
+- 단단한 건물의 **숨겨진 내부 복셀** 은 생성하지 마세요.
+- 특별히 요구된 경우가 아니면 **보이는 외부 표면만** 복셀 지오메트리로 만드세요.
 
+## 지오메트리 최적화
 
-#### GEOMETRY OPTIMIZATION
+다음과 같은 큰 평면 영역에는:
 
-For large planar areas such as:
+- 지붕;
+- 광장 포장;
+- 건물 벽;
+- 성당 벽;
 
-- roofs;
-- plaza paving;
-- building walls;
-- church walls;
+가능하면 **그리디 메싱** 또는 **병합된 복셀 표면** 을 사용하세요.
 
-use greedy meshing or merged voxel surfaces where possible.
+실루엣을 바꾸는 디테일에는 **개별 소형 복셀 블록을 예약** 하세요:
 
-Reserve individual small voxel blocks for silhouette-changing details such as:
+- 고딕 첨탑;
+- 부력벽;
+- 창문 트레이서리;
+- 조각상;
+- 굴뚝;
+- 나무;
+- 발코니;
+- 코니스.
 
-- Gothic pinnacles;
-- buttresses;
-- window tracery;
-- statues;
-- chimneys;
-- trees;
-- balconies;
-- cornices.
+## 구현 가드레일
 
+- 임베디드 Three.js 호환 빌드를 쓴다면 `<script type="importmap">` 을 사용하거나, **WebGL2 로 직접 구현** 하세요.
+- **네트워크 요청 없음.**
+- **외부 이미지 자산 없음.**
+- 텍스처는 **Canvas 로 절차적 생성**.
+- `const` / `let` 사용. 불필요한 글로벌 네임스페이스 오염 금지.
+- 재생성 시 오래된 지오메트리·버퍼·머티리얼을 **dispose**.
+- **결정론적 랜덤 시드** 사용.
+- 견고한 **에러 핸들링** 포함.
+- **무한 절차 배치 루프 방지.**
+- 2차 건물 배치가 10회 연속 실패하면 **스킵**.
+- **고정 랜드마크 지오메트리** 는 절대 스킵하지 마세요.
 
-#### IMPLEMENTATION GUARDRAILS
+## 정확성 가드레일
 
-- Use `<script type="importmap">` if implementing with an embedded Three.js-compatible build, OR implement directly in WebGL2.
-- No network requests.
-- No external image assets.
-- Generate textures procedurally with Canvas.
-- Use `const` / `let`; avoid unnecessary global namespace pollution.
-- Dispose of old geometries, buffers and materials when regenerating.
-- Use deterministic random seeds.
-- Include robust error handling.
-- Prevent infinite procedural placement loops.
-- If placement of a secondary building fails 10 times, skip it.
-- Fixed landmark geometry must NEVER be skipped.
+장면이 다음으로 **우연히라도** 보이면 안 됩니다:
 
+- 프라하 구 시청 광장;
+- 빈;
+- 부다페스트;
+- 크라쿠프;
+- 흔한 중세 판타지 도시.
 
-#### ACCURACY GUARDRAILS
+다음 조합은 **시각적 정체성의 필수** 입니다:
 
-The scene must NOT accidentally resemble:
+**거대한 단일 종탑 고딕 성 미하일 성당  
++ 거대한 붉은 타일 성당 지붕  
++ 바로 남쪽에 있는 마차이 코르비누스 기마 앙상블  
++ 넓고 직사각형의 석재 광장  
++ 반피 궁전  
++ Iuliu Maniu 거리로 통하는 미러 빌딩  
++ 빽빽하고 연속적인 파스텔톤 역사적 파사드들  
++ 트란실바니아 풍의 오렌지 지붕 도시와 멀리 보이는 녹색 구릉들.**
 
-- Prague Old Town Square;
-- Vienna;
-- Budapest;
-- Kraków;
-- a generic medieval fantasy city.
+Piața Unirii 안에 추가적인 대성당, 성, 기념 탑을 만들어 넣지 마세요.
 
-The following combination is mandatory for visual identity:
+## 최종 지시
 
-**huge single-towered Gothic St. Michael’s Church  
-+ enormous red tiled church roof  
-+ Matthias Corvinus equestrian ensemble directly south of it  
-+ broad rectangular stone plaza  
-+ Bánffy Palace  
-+ Mirror Buildings opening onto Iuliu Maniu Street  
-+ dense continuous pastel historic façades  
-+ Transylvanian orange-roofed city and distant green hills.**
+**지금 바로 완전한 구현을 생성하세요.**
 
-Do not invent additional cathedrals, castles or monumental towers inside Piața Unirii.
+가장 중요한 기준은 **인식 가능성(recognizability)** 입니다.
 
+초기 항공 카메라 각도에서, **클루즈나포카에 익숙한 사람이 텍스트를 읽기 전에도 Piața Unirii 를 즉시 알아봐야** 합니다.
 
-#### FINAL OUTPUT INSTRUCTION
+광장은 **웅장하고, 밀도 있고, 역사적으로 다층적이며 살아있는** 느낌이 들도록 하세요. 동시에 다음 조건을 만족하도록 복셀 스케일을 충분히 작게 잡으세요:
 
-Generate the complete implementation now.
-
-The most important criterion is **recognizability**.
-
-At the initial aerial camera angle, someone familiar with Cluj-Napoca should immediately recognize **Piața Unirii** before reading any text.
-
-Make the square feel grand, dense, historically layered and alive, while keeping the voxel scale sufficiently fine that:
-
-- St. Michael’s Church reads as genuine Gothic architecture rather than a blocky approximation;
-- the Matthias Corvinus ensemble is unmistakably an equestrian monument with four accompanying figures;
-- the historic buildings form convincing individual façades rather than repeated procedural boxes;
-- the entire scene still unmistakably uses voxel construction.
+- 성 미하일 성당은 단조로운 블록 근사가 아니라 **진짜 고딕 건축** 처럼 읽혀야 합니다;
+- 마차이 코르비누스 앙상블은 네 사람의 부조 인물이 함께 있는 **명백한 기마 동상** 으로 보여야 합니다;
+- 역사적 건물들은 같은 모티프가 반복되는 절차적 박스가 아니라 **각자 설득력 있는 개별 파사드** 처럼 보여야 합니다;
+- 동시에 장면 전체가 **명백하게 복셀로 만들어졌다는 점** 이 느껴져야 합니다.

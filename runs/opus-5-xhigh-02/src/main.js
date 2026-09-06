@@ -98,7 +98,7 @@ async function boot() {
 
   const camera = new THREE.PerspectiveCamera(39, window.innerWidth / window.innerHeight, 0.6, 12000);
 
-  setStage(0.04, 'Mixing plaster, limestone and clay tiles');
+  setStage(0.04, '석고·라임스톤·타일을 준비하는 중');
   await frame();
   buildAtlas();
   const matLib = new MaterialLibrary();
@@ -139,7 +139,7 @@ async function boot() {
   const occ = new Occupancy(2);
   reserveInfrastructure(occ);
 
-  setStage(0.10, "Raising St. Michael's Church");
+  setStage(0.10, '성 미하일 성당을 올리는 중');
   await frame();
   buildChurch(B.hero);
   footprints.push(
@@ -151,30 +151,30 @@ async function boot() {
     { x0: 41.2, z0: -36.0, x1: 45.8, z1: -31.0, base: 0, h: 32.6 },
   );
 
-  setStage(0.20, 'Casting the Matthias Corvinus ensemble');
+  setStage(0.20, '마차이 코르비누스 동상을 주조하는 중');
   await frame();
   buildMonument(B.fine);
   buildRomanWindow(B.fine);
   footprints.push({ x0: -31.8, z0: 5.2, x1: -8.2, z1: 22.8, base: 0 });
 
-  setStage(0.28, 'Building Bánffy Palace and the Mirror Buildings');
+  setStage(0.28, '반피 궁전과 미러 빌딩을 짓는 중');
   await frame();
   for (const f of buildBanffy(B.hero)) footprints.push(Object.assign({ base: 0, h: 26 }, f));
   for (const f of buildMirrorBuildings(B.hero)) footprints.push(Object.assign({ base: 0, h: 24 }, f));
 
-  setStage(0.34, 'Anchoring the south-west corner');
+  setStage(0.34, '남서쪽 모서리를 고정하는 중');
   await frame();
   for (const f of buildContinental(B.hero)) footprints.push(Object.assign({ base: 0, h: 26 }, f));
   for (const f of buildTownHall(B.hero)) footprints.push(Object.assign({ base: 0, h: 22 }, f));
   for (const f of buildNationalBank(B.hero)) footprints.push(Object.assign({ base: 0, h: 25 }, f));
   for (const f of footprints) occ.markRect(f.x0 - 1, f.z0 - 1, f.x1 + 1, f.z1 + 1);
 
-  setStage(0.42, 'Enclosing the square with historic frontages');
+  setStage(0.42, '광장을 역사적 정면으로 둘러싸는 중');
   await frame();
   buildFrontages(B.perim, footprints);
   for (const f of footprints) occ.markRect(f.x0 - 1, f.z0 - 1, f.x1 + 1, f.z1 + 1);
 
-  setStage(0.50, "Spreading Cluj's old town outward");
+  setStage(0.50, '클루즈 구시가지 바깥으로 퍼뜨리는 중');
   await frame();
   buildOldTown(B.outer, occ, footprints, 255);
 
@@ -198,29 +198,29 @@ async function boot() {
     return roadNear(x, z);
   };
 
-  setStage(0.58, 'Planting lindens and plane trees');
+  setStage(0.58, '보리수와 플라네타리 나무를 심는 중');
   await frame();
   const treeModels = buildTreeModels();
   const treePlan = planTrees(blocked);
 
-  setStage(0.64, 'Setting out benches, lamps and cafe terraces');
+  setStage(0.64, '벤치·가로등·카페 테라스를 배치하는 중');
   await frame();
   const propModels = buildPropModels();
   const propPlan = planProps(blocked);
   buildPlazaStructures(B.perim);
 
-  setStage(0.70, 'Paving Piata Unirii');
+  setStage(0.70, 'Piața Unirii 에 포장을 깔다');
   await frame();
   const shadeBlobs = treePlan.map((t) => ({ x: t.x, z: t.z, r: 4.4 * t.scale }));
   shadeBlobs.push({ x: MONUMENT.centre[0], z: MONUMENT.centre[1], r: 12 });
   const ground = buildGround(footprints, shadeBlobs, matLib);
   scene.add(ground.group);
 
-  setStage(0.76, 'Filling the fountains');
+  setStage(0.76, '분수대에 물을 채우는 중');
   await frame();
   const fountain = buildFountain(B.perim, matLib, scene);
 
-  setStage(0.80, 'Sketching the Transylvanian basin');
+  setStage(0.80, '트란실바니아 분지를 스케치하는 중');
   await frame();
   buildDistantCity(B.far);
   const farTerrain = buildFarTerrain(matLib);
@@ -229,7 +229,7 @@ async function boot() {
   const clouds = buildClouds();
   scene.add(clouds);
 
-  setStage(0.86, 'Merging voxel surfaces');
+  setStage(0.86, '복셀 표면을 병합하는 중');
   await frame();
   const staticRoot = new THREE.Group();
   staticRoot.name = 'voxels';
@@ -256,7 +256,7 @@ async function boot() {
   }
   for (const key of Object.keys(tiers)) tiers[key].dispose();
 
-  setStage(0.92, 'Bringing the square to life');
+  setStage(0.92, '광장에 생기를 불어넣는 중');
   await frame();
   const trees = buildTrees(treeModels, treePlan, matLib, scene);
   const props = buildProps(propModels, propPlan.props, matLib, scene);
@@ -345,9 +345,9 @@ async function boot() {
   });
 
   function hud() {
-    el('m-time').textContent = state.todTarget > 0.5 ? 'Golden hour' : 'Clear day';
-    el('m-view').textContent = state.flyoverOn ? 'Flyover' : (state.view === 'street' ? 'Street level' : 'Aerial');
-    el('m-labels').textContent = state.labels ? 'on' : 'off';
+    el('m-time').textContent = state.todTarget > 0.5 ? '골든아워' : '맑은 낮';
+    el('m-view').textContent = state.flyoverOn ? '플라이오버' : (state.view === 'street' ? '거리 수준' : '항공');
+    el('m-labels').textContent = state.labels ? '켜짐' : '꺼짐';
   }
   hud();
 
@@ -432,7 +432,7 @@ async function boot() {
   }
 
   el('m-tris').textContent = (totalTris / 1000).toFixed(0) + 'k';
-  setStage(1, 'Ready');
+  setStage(1, '준비 완료');
   await frame();
   el('loading').classList.add('hidden');
   tick();

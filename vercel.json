@@ -1,5 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "_comment": "GitHub Pages 배포 시 vercel.json 은 무시됩니다. 루트 index.html 의 meta refresh 가 /comparison/ 으로 자동 이동시킵니다. 원본 Vercel 동작을 그대로 보존하기 위해 redirect 규칙은 유지합니다.",
   "redirects": [
     { "source": "/", "destination": "/comparison/", "permanent": false }
   ]

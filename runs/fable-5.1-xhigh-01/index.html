@@ -1,23 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="data:,">
-  <title>Piața Unirii, Cluj-Napoca — voxel simulation</title>
+  <title>통일광장, 클루즈나포카 — 복셀 시뮬레이션</title>
+  <meta name="description" content="루마니아 클루즈나포카의 Piața Unirii(통일광장)를 정교한 복셀로 재현한 인터랙티브 3D 미니어처입니다.">
   <style>
     :root { color-scheme: dark; }
-    html, body { margin: 0; height: 100%; overflow: hidden; background: #1a2330; font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif; color: #f2efe8; }
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #1a2330; font-family: "Inter", "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", system-ui, -apple-system, sans-serif; color: #f2efe8; }
     canvas { display: block; }
     #hud { position: fixed; left: 16px; top: 16px; pointer-events: none; user-select: none; max-width: 330px; }
     #hud h1 { margin: 0; font-size: 17px; font-weight: 650; letter-spacing: 0.02em; text-shadow: 0 1px 3px rgba(0,0,0,0.6); }
-    #hud h1 small { display: block; font-size: 11px; font-weight: 500; opacity: 0.8; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 3px; }
+    #hud h1 small { display: block; font-size: 11px; font-weight: 500; opacity: 0.8; letter-spacing: 0.12em; margin-top: 3px; }
     #hud .keys { margin-top: 10px; font-size: 12px; line-height: 1.55; opacity: 0.92; text-shadow: 0 1px 2px rgba(0,0,0,0.7); }
     #hud .keys kbd { display: inline-block; min-width: 14px; text-align: center; padding: 0 5px; border-radius: 4px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25); font: 600 11px/18px ui-monospace, "SF Mono", Menlo, monospace; margin-right: 6px; }
     #hud .keys span.mode { color: #ffd39a; font-weight: 600; }
     #status { position: fixed; right: 14px; bottom: 12px; font: 500 11px/1.4 ui-monospace, "SF Mono", Menlo, monospace; opacity: 0.75; text-align: right; pointer-events: none; text-shadow: 0 1px 2px rgba(0,0,0,0.7); }
     #toolbar { position: fixed; right: 14px; top: 14px; display: flex; gap: 6px; }
-    #toolbar button { pointer-events: auto; cursor: pointer; background: rgba(20,26,36,0.62); border: 1px solid rgba(255,255,255,0.22); color: #f2efe8; border-radius: 6px; padding: 6px 10px; font: 600 12px system-ui, sans-serif; backdrop-filter: blur(6px); }
+    #toolbar button { pointer-events: auto; cursor: pointer; background: rgba(20,26,36,0.62); border: 1px solid rgba(255,255,255,0.22); color: #f2efe8; border-radius: 6px; padding: 6px 10px; font: 600 12px "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif; backdrop-filter: blur(6px); }
     #toolbar button:hover { background: rgba(60,70,90,0.7); }
     #toolbar button.active { border-color: #ffd39a; color: #ffd39a; }
     #loading { position: fixed; inset: 0; display: grid; place-items: center; background: radial-gradient(ellipse at 50% 40%, #2c4a6e 0%, #131c27 70%); transition: opacity 0.6s; z-index: 5; }
@@ -32,13 +33,13 @@
     .lbl.on { opacity: 1; }
     .lbl::after { content: ""; position: absolute; left: -3px; top: -3px; width: 6px; height: 6px; border-radius: 50%; background: #f4efe3; box-shadow: 0 0 0 1.5px rgba(30,36,46,0.7), 0 1px 3px rgba(0,0,0,0.5); }
     .lbl-stem { position: absolute; left: -0.5px; bottom: 0; width: 1px; height: 30px; background: linear-gradient(to top, rgba(244,239,227,0.9), rgba(244,239,227,0.35)); }
-    .lbl-card { position: absolute; left: 0; bottom: 30px; transform: translateX(-50%); white-space: nowrap; display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 4px 9px 4px; border-radius: 5px; background: rgba(24, 30, 40, 0.72); border: 1px solid rgba(244, 239, 227, 0.32); backdrop-filter: blur(4px); box-shadow: 0 2px 8px rgba(0,0,0,0.28); color: #f4efe3; font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif; }
+    .lbl-card { position: absolute; left: 0; bottom: 30px; transform: translateX(-50%); white-space: nowrap; display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 4px 9px 4px; border-radius: 5px; background: rgba(24, 30, 40, 0.72); border: 1px solid rgba(244, 239, 227, 0.32); backdrop-filter: blur(4px); box-shadow: 0 2px 8px rgba(0,0,0,0.28); color: #f4efe3; font-family: "Inter", "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif; }
     .lbl-name { font-size: 12px; font-weight: 600; letter-spacing: 0.02em; line-height: 1.2; }
     .lbl-sub { font-size: 10px; font-weight: 400; opacity: 0.72; letter-spacing: 0.03em; line-height: 1.2; }
     .lbl-minor .lbl-card { background: rgba(24, 30, 40, 0.6); padding: 3px 8px; }
     .lbl-minor .lbl-name { font-size: 11px; font-weight: 500; }
     .lbl-street .lbl-card { background: rgba(244, 239, 227, 0.82); color: #2a2f38; border-color: rgba(42, 47, 56, 0.35); padding: 2px 7px; border-radius: 3px; }
-    .lbl-street .lbl-name { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+    .lbl-street .lbl-name { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; }
     .lbl-street::after { background: #2a2f38; box-shadow: 0 0 0 1.5px rgba(244,239,227,0.8); }
     .lbl-street .lbl-stem { background: linear-gradient(to top, rgba(42,47,56,0.8), rgba(42,47,56,0.3)); }
     #error { position: fixed; inset: auto 16px 16px 16px; display: none; background: rgba(120, 30, 30, 0.92); color: #fff; padding: 12px 14px; border-radius: 8px; font: 13px/1.4 ui-monospace, Menlo, monospace; white-space: pre-wrap; z-index: 9; }
@@ -53,25 +54,25 @@
   </script>
 </head>
 <body>
-  <div id="loading"><div class="box"><h2>Piața Unirii · Cluj-Napoca</h2><p id="loading-text">Preparing voxels…</p><div class="bar"><i id="loading-bar"></i></div></div></div>
+  <div id="loading"><div class="box"><h2>Piața Unirii · 클루즈나포카</h2><p id="loading-text">복셀을 준비하는 중…</p><div class="bar"><i id="loading-bar"></i></div></div></div>
   <div id="hud">
-    <h1>Piața Unirii<small>Cluj-Napoca · voxel miniature</small></h1>
+    <h1>Piața Unirii<small>클루즈나포카 · 복셀 미니어처</small></h1>
     <div class="keys">
-      <div><kbd>Drag</kbd>rotate · <kbd>Right-drag</kbd>pan · <kbd>Scroll</kbd>zoom</div>
-      <div><kbd>R</kbd>re-centre on St. Michael's &amp; Matthias Corvinus</div>
-      <div><kbd>F</kbd>cinematic flyover</div>
-      <div><kbd>T</kbd>time of day · <span class="mode" id="mode-label">Clear day</span></div>
-      <div><kbd>V</kbd>street level / aerial</div>
-      <div><kbd>L</kbd>landmark labels · <span class="mode" id="labels-state">off</span></div>
-      <div><kbd>G</kbd>regenerate crowds &amp; details</div>
+      <div><kbd>드래그</kbd>회전 · <kbd>우클릭 드래그</kbd>이동 · <kbd>스크롤</kbd>줌</div>
+      <div><kbd>R</kbd>성 미하일 성당·마차이 코르비누스 동상으로 다시 중심</div>
+      <div><kbd>F</kbd>시네마틱 플라이오버</div>
+      <div><kbd>T</kbd>시간대 · <span class="mode" id="mode-label">맑은 낮</span></div>
+      <div><kbd>V</kbd>거리 수준 / 항공 뷰</div>
+      <div><kbd>L</kbd>랜드마크 라벨 · <span class="mode" id="labels-state">꺼짐</span></div>
+      <div><kbd>G</kbd>군중과 디테일 재생성</div>
     </div>
   </div>
   <div id="toolbar">
-    <button id="btn-recenter" title="Re-centre (R)">⌖ Centre</button>
-    <button id="btn-fly" title="Flyover (F)">▶ Flyover</button>
-    <button id="btn-time" title="Time of day (T)">☀ Day</button>
-    <button id="btn-view" title="Street / aerial (V)">⇅ View</button>
-    <button id="btn-labels" title="Landmark labels (L)">◌ Labels</button>
+    <button id="btn-recenter" title="다시 중심 (R)">⌖ 중심</button>
+    <button id="btn-fly" title="플라이오버 (F)">▶ 플라이오버</button>
+    <button id="btn-time" title="시간대 (T)">☀ 낮</button>
+    <button id="btn-view" title="거리 / 항공 (V)">⇅ 뷰</button>
+    <button id="btn-labels" title="랜드마크 라벨 (L)">◌ 라벨</button>
   </div>
   <div id="labels"></div>
   <div id="status"></div>

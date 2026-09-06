@@ -153,13 +153,13 @@ class App {
   toggleLabels() {
     const on = this.labels.toggle();
     $('btn-labels').classList.toggle('active', on);
-    $('labels-state').textContent = on ? 'on' : 'off';
+    $('labels-state').textContent = on ? '켜짐' : '꺼짐';
   }
   toggleTime() {
     this.sky.toggle();
     const sunset = this.sky.mode === 'sunset';
-    $('mode-label').textContent = sunset ? 'Golden-hour sunset' : 'Clear day';
-    $('btn-time').textContent = sunset ? '🌇 Sunset' : '☀ Day';
+    $('mode-label').textContent = sunset ? '골든아워 노을' : '맑은 낮';
+    $('btn-time').textContent = sunset ? '🌇 노을' : '☀ 낮';
   }
   toggleFlyover() {
     if (this.flyover) this.stopFlyover();

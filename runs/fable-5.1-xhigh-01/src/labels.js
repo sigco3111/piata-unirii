@@ -3,15 +3,17 @@
 import * as THREE from 'three';
 import { SQ, CHURCH, CHURCH_CENTER, MONUMENT, ARCH, FOUNTAIN, STREETS, polylineSample } from './layout.js';
 
+// 거리 영문 식별자(STREETS 레코드의 name 키)는 그대로 보존하고,
+// 사용자에게 보이는 라벨만 한국어(루마니아어 표기 포함)로 표시합니다.
 const STREET_NAMES = {
-  Eroilor: 'Bulevardul Eroilor',
-  'Iuliu Maniu': 'Strada Iuliu Maniu',
-  'Regele Ferdinand': 'Strada Regele Ferdinand',
-  '21 Decembrie': 'Bulevardul 21 Decembrie 1989',
-  Memorandumului: 'Strada Memorandumului',
-  Napoca: 'Strada Napoca',
-  Universitatii: 'Strada Universității',
-  'Matei Corvin': 'Strada Matei Corvin',
+  Eroilor: '에로이러르 대로 (Bulevardul Eroilor)',
+  'Iuliu Maniu': '이울리우 마니우 거리 (Strada Iuliu Maniu)',
+  'Regele Ferdinand': '레겔레 페르디난드 거리 (Strada Regele Ferdinand)',
+  '21 Decembrie': '12월 21일 1989 대로 (Bulevardul 21 Decembrie 1989)',
+  Memorandumului: '메모란둘무루이 거리 (Strada Memorandumului)',
+  Napoca: '나포카 거리 (Strada Napoca)',
+  Universitatii: '우니베르시타치이 거리 (Strada Universității)',
+  'Matei Corvin': '마테이 코르빈 거리 (Strada Matei Corvin)',
 };
 
 const _v = new THREE.Vector3();
@@ -159,11 +161,11 @@ export function buildLabelItems(world) {
   const items = [];
   const L = world.landmarks;
   const churchBase = L.church ? L.church.baseY : 0;
-  items.push({ text: 'St. Michael’s Church', sub: 'Biserica Sfântul Mihail · 14th–15th c.', x: CHURCH_CENTER.x + 4, y: churchBase + CHURCH.ridgeH + 3, z: CHURCH_CENTER.z, kind: 'landmark', priority: 10, maxDist: 1400, minDist: 0 });
-  items.push({ text: 'Matthias Corvinus Monument', sub: 'Statuia lui Matei Corvin · 1902', x: MONUMENT.cx, y: (L.monument ? L.monument.top : gy(MONUMENT.cx, MONUMENT.cz) + 7) + 8.5, z: MONUMENT.cz, kind: 'landmark', priority: 9, maxDist: 900, minDist: 0 });
-  items.push({ text: 'Roman Napoca archaeological window', sub: 'Fereastră arheologică', x: ARCH.cx, y: gy(ARCH.cx, ARCH.cz + 4) + 1.2, z: ARCH.cz, kind: 'minor', priority: 5, maxDist: 320, minDist: 0, occludable: true });
-  items.push({ text: 'Fountain', sub: 'Southern water tables & jets', x: FOUNTAIN.cx, y: gy(FOUNTAIN.cx, FOUNTAIN.cz) + 1.5, z: FOUNTAIN.cz, kind: 'minor', priority: 5, maxDist: 420, minDist: 0, occludable: true });
-  items.push({ text: 'Piața Unirii', sub: 'Cluj-Napoca', x: MONUMENT.cx + 30, y: gy(MONUMENT.cx + 30, 40) + 1.5, z: 40, kind: 'street', priority: 3, maxDist: 1600, minDist: 300 });
+  items.push({ text: '성 미하일 성당', sub: 'Biserica Sfântul Mihail · 14–15세기 고딕', x: CHURCH_CENTER.x + 4, y: churchBase + CHURCH.ridgeH + 3, z: CHURCH_CENTER.z, kind: 'landmark', priority: 10, maxDist: 1400, minDist: 0 });
+  items.push({ text: '마차이 코르비누스 동상', sub: '마테이 코르빈 동상대 · 1902년', x: MONUMENT.cx, y: (L.monument ? L.monument.top : gy(MONUMENT.cx, MONUMENT.cz) + 7) + 8.5, z: MONUMENT.cz, kind: 'landmark', priority: 9, maxDist: 900, minDist: 0 });
+  items.push({ text: '로마 나포카 발굴 창', sub: '고대 로마 발파사드 유리창', x: ARCH.cx, y: gy(ARCH.cx, ARCH.cz + 4) + 1.2, z: ARCH.cz, kind: 'minor', priority: 5, maxDist: 320, minDist: 0, occludable: true });
+  items.push({ text: '남쪽 분수대', sub: '지면 분수·반사 물 테이블', x: FOUNTAIN.cx, y: gy(FOUNTAIN.cx, FOUNTAIN.cz) + 1.5, z: FOUNTAIN.cz, kind: 'minor', priority: 5, maxDist: 420, minDist: 0, occludable: true });
+  items.push({ text: 'Piața Unirii', sub: '클루즈나포카 통일광장', x: MONUMENT.cx + 30, y: gy(MONUMENT.cx + 30, 40) + 1.5, z: 40, kind: 'street', priority: 3, maxDist: 1600, minDist: 300 });
 
   // perimeter buildings from the placed specs
   const roofAnchor = (b, along = 0.5, depth = 0.35) => {
@@ -172,29 +174,31 @@ export function buildLabelItems(world) {
     return { x: b.x + lx * cr + lz * sr, z: b.z - lx * sr + lz * cr, y: b.baseY + b.roofTop + 2.5 };
   };
   const find = (name) => (world.perimeter || []).find((b) => b.name === name);
+  // 한글 표기: 첫 컬럼은 world.perimeter 의 식별자(영문 보존 — 그대로 find() 호출에 사용),
+  // 두 번째는 카드 제목, 세 번째는 보조 설명입니다.
   const named = [
-    ['Bánffy Palace', 'Palatul Bánffy · Baroque, 1774–1785', 'landmark', 8, 1000],
-    ['Hotel Continental', 'former Hotel Continental / New York', 'landmark', 7, 900],
-    ['National Bank', 'Banca Națională', 'minor', 4, 320],
-    ['Old Town Hall', 'Primăria Veche', 'minor', 4, 320],
-    ['Mauksch-Hintz House', 'Pharmacy museum', 'minor', 3, 260],
-    ['Kemény Palace', 'Palatul Kemény', 'minor', 3, 260],
-    ['Rucska House', 'Casa Rucska', 'minor', 3, 260],
-    ['Rhédey Palace', 'Palatul Rhédey', 'minor', 3, 260],
-    ['Jósika Palace', 'Palatul Jósika', 'minor', 3, 260],
-    ['Wass House', 'Casa Wass', 'minor', 3, 260],
-    ['Roman Catholic parish house', 'Casa parohială', 'minor', 3, 260],
+    ['Bánffy Palace', '반피 궁전', '바로크, 1774–1785', 'landmark', 8, 1000],
+    ['Hotel Continental', '구 호텔 콘티넨탈', 'former Hotel Continental / New York', 'landmark', 7, 900],
+    ['National Bank', '국립은행', 'Banca Națională', 'minor', 4, 320],
+    ['Old Town Hall', '구 시청', 'Primăria Veche', 'minor', 4, 320],
+    ['Mauksch-Hintz House', '마우크시-힌츠 하우스', '약전(구 약국) 박물관', 'minor', 3, 260],
+    ['Kemény Palace', '케메니 궁전', 'Palatul Kemény', 'minor', 3, 260],
+    ['Rucska House', '루치카 하우스', 'Casa Rucska', 'minor', 3, 260],
+    ['Rhédey Palace', '레데이 궁전', 'Palatul Rhédey', 'minor', 3, 260],
+    ['Jósika Palace', '요시카 궁전', 'Palatul Jósika', 'minor', 3, 260],
+    ['Wass House', '바스 하우스', 'Casa Wass', 'minor', 3, 260],
+    ['Roman Catholic parish house', '가톨릭 교구관', 'Casa parohială', 'minor', 3, 260],
   ];
-  for (const [name, sub, kind, priority, maxDist] of named) {
+  for (const [name, label, sub, kind, priority, maxDist] of named) {
     const b = find(name);
     if (!b) continue;
     const a = roofAnchor(b);
-    items.push({ text: name, sub, x: a.x, y: a.y, z: a.z, kind, priority, maxDist, minDist: 0, occludable: true });
+    items.push({ text: label, sub, x: a.x, y: a.y, z: a.z, kind, priority, maxDist, minDist: 0, occludable: true });
   }
   const ms = find('Mirror Building (south)'), mn = find('Mirror Building (north)');
   if (ms && mn) {
     const a = roofAnchor(ms, 1.0, 0.3), b = roofAnchor(mn, 0.0, 0.3);
-    items.push({ text: 'Mirror Buildings', sub: 'Palatele Statusului Romano-Catolic · 1898–1899', x: (a.x + b.x) / 2, y: Math.max(a.y, b.y) + 4, z: (a.z + b.z) / 2, kind: 'landmark', priority: 8, maxDist: 900, minDist: 0, occludable: true });
+    items.push({ text: '미러 빌딩', sub: 'Palatele Statusului Romano-Catolic · 1898–1899', x: (a.x + b.x) / 2, y: Math.max(a.y, b.y) + 4, z: (a.z + b.z) / 2, kind: 'landmark', priority: 8, maxDist: 900, minDist: 0, occludable: true });
   }
   // major named streets, tagged a little way into each street from the square
   for (const st of STREETS) {

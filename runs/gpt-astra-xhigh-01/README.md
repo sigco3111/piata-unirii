@@ -1,35 +1,54 @@
-# Piața Unirii — A living miniature
+# Piața Unirii — 살아있는 미니어처
 
-Open `index.html` directly in a browser with WebGL 2. Everything is bundled locally; no server, installation, network connection, external font, or image download is required.
+**WebGL 2 가 있는 브라우저에서 `index.html` 을 직접 여세요.** 모든 것이 로컬로 번들되어 있어 — 서버, 설치, 네트워크, 외부 폰트, 이미지 다운로드가 **전부 필요 없습니다**.
 
-| Control | Action |
+| 조작 | 동작 |
 | --- | --- |
-| Left drag / one finger | Orbit the square |
-| Right drag / shift-drag | Pan |
-| Scroll | Zoom |
-| Two fingers | Pan and pinch to zoom |
-| R | Re-centre on the church and monument |
-| F | Cinematic orbit, beginning near the rooftops and rising into an aerial view |
-| T | Clear day / golden-hour sunset |
-| V | Street-level / aerial preset |
-| L | Floating landmark labels, hidden initially |
+| 좌클릭 드래그 / 한 손가락 | 광장 궤도 회전 |
+| 우클릭 드래그 / Shift+드래그 | 이동(팬) |
+| 스크롤 | 줌 |
+| 두 손가락 | 이동 + 핀치 줌 |
+| `R` | 성당과 동상에 다시 중심 |
+| `F` | 시네마틱 궤도 — 옥상에서 출발해 항공 뷰로 솟아오름 |
+| `T` | 맑은 낮 ↔ 골든아워 노을 |
+| `V` | 거리 수준 ↔ 항공 뷰 프리셋 |
+| `L` | 떠 있는 랜드마크 라벨(기본 꺼짐) |
 
-The architectural layout uses metres, with east along +X and north along −Z. The pedestrian square measures 160 × 220 metres. Named landmarks and all 24 perimeter frontages have fixed allocations. Secondary buildings pass an axis-aligned footprint check against buildings, the plaza, and reserved roads. A failed fixed frontage stops generation with an error; background placements have a maximum of ten attempts.
+## 건축 구성
 
-The church has its single 80-metre northern clock tower, stepped tile roof, pointed windows, buttresses, tracery, west portal, and polygonal choir. The monument includes the horse and rider and four accompanying bronze figures. The palace has an open courtyard and sculptural roofline; the paired Mirror Buildings frame Iuliu Maniu. The excavated Roman foundations sit below glass at paving level, above a continuous solid ground foundation.
+좌표 단위는 **미터**이며, 동쪽이 +X, 북쪽이 −Z 입니다. 보행자 광장은 **160 × 220 m** 입니다. 명명된 랜드마크와 **24면의 둘레 정면 모두** 가 고정 할당되어 있습니다. 2차 건물들은 다른 건물·광장·예약된 도로에 대해 축 정렬 풋프린트 검사(AABB collision check)를 통과합니다. 고정 정면 배치가 실패하면 **에러로 생성을 중단** 하고, 배경 건물은 최대 10회까지만 시도합니다.
 
-Repeated geometry uses GPU instances grouped by material, spatial region, and detail tier. Stone, plaster, terracotta, bronze, vegetation, pavement, glass, and water have separate pools. A shared canvas-generated material atlas supplies surface variation. Large volumes and stepped surfaces use stretched, merged blocks; small voxels define architectural edges. Frustum culling and distance thresholds retain hero details nearby and reduce detail at longer distances. Static soft sunlight shadows, contact shading, sky fill, haze, and emissive evening lighting provide depth.
+성당은 **80 m 단일 북측 시계탑**, 계단식 타일 지붕, 첨예 창, 부력벽, 트레이서리, 서쪽 정문, 다각형 성당 끝(choir) 을 가집니다. 동상은 말과 기사와 **네 개의 부조 동상** 을 포함합니다. 궁전은 열린 안뜰과 조각 풍의 지붕선을, **쌍둥이 미러 빌딩** 은 이울리우 마니우 거리를 프레이밍합니다. **로마 발굴 유적** 은 포장면 높이의 유리 아래, 그 아래로 연속된 단단한 지반 위에 놓입니다.
 
-There are 116 animated or seated residents and visitors, including photographers, café patrons, cyclists, a delivery cyclist, and children. Twelve vehicles follow the perimeter and outer streets. Fountain jets and pigeons are animated with shared instance buffers. Random detail uses deterministic seeds; landmark placement never uses randomness.
+## 렌더링 전략
 
-`app-source.js` contains the renderer, controls, labels, and application lifecycle. `world.js` constructs and animates the model. `app.js` is the prebuilt browser bundle. The local Three.js 0.180.0 source and MIT license are in `vendor/`. The import map also points to the local module build. The classic bundle allows direct `file:` loading without module-origin restrictions.
+반복 지오메트리는 **머티리얼·공간 영역·디테일 티어** 별로 묶은 GPU 인스턴스를 사용합니다. stone, plaster, terracotta, bronze, vegetation, pavement, glass, water 가 별도 풀을 가집니다. **공유 캔버스 생성 머티리얼 아틀라스** 가 표면 변화를 제공합니다. 큰 볼륨과 계단형 표면은 늘려서·병합한 블록을, **작은 복셀은 건축 디테일 엣지** 를 정의합니다. **프러스텀 컬링과 거리 임계값** 으로 가까운 히어로 디테일은 보존하고 멀리는 단순화합니다. 정적 부드러운 햇빛 그림자·컨택트 셰이딩·스카이 필·헤이즈·저녁 발광 라이팅이 깊이감을 만듭니다.
 
-To rebuild after editing the sources, with esbuild available:
+## 살아있는 도시
+
+116명의 애니메이션·앉아 있는 시민과 방문객이 있습니다 — 사진 작가, 카페 손님, 자전거 타는 사람, 배달 자전거, 어린이까지. 12대의 차량이 둘레와 외곽 도로를 따라 주행합니다. 분수 분사와 비둘기는 **공유 인스턴스 버퍼** 로 애니메이션됩니다. 무작위 디테일은 **결정론적 시드** 를 사용하며, **랜드마크 배치는 절대 무작위가 아닙니다**.
+
+## 파일 구성
+
+- `app-source.js` — 렌더러·컨트롤·라벨·앱 생명주기를 담고 있습니다.
+- `world.js` — 모델을 구성·애니메이션합니다.
+- `app.js` — 빌드된 브라우저 번들입니다. **원본 영문 텍스트가 그대로 남아있어** UI 는 영문으로 보이지만, `index.html` 과 `app-source.js` 를 패치하면 한국어 UI 가 됩니다.
+- `vendor/` — 로컬 Three.js 0.180.0 소스와 MIT 라이선스.
+
+## 재빌드
+
+`app-source.js` 를 수정한 후에는 esbuild 가 있으면 다음 명령으로 다시 빌드할 수 있습니다.
 
 ```sh
 esbuild app-source.js --bundle --format=iife --minify --outfile=app.js
 ```
 
-Architectural reference checks included the [Cluj Tourism description of the Mirror Buildings](https://clujtourism.ro/en/portfolio/houses-of-roman-catholic-organization-mirror-buildings/) and the [Cluj County Library’s account of Piața Unirii](https://www.bjc.ro/wiki/index.php/Pia%C5%A3a_Libert%C4%83%C5%A3ii). These are documentation links only; the application does not access them.
+`index.html` 의 importmap 도 로컬 모듈 빌드를 가리키게 되어 있어, 모듈 출처 제한 없이 `file://` 로도 직접 열 수 있습니다.
 
-This is a voxel architectural interpretation with approximate geographic proportions, rather than a surveyed digital twin. Frame rate depends on the browser, viewport, and GPU; validation measurements are recorded in `verification.json`.
+## 참고 자료
+
+건축 사실 확인에는 다음 자료를 참고했습니다 — [클루즈 관광청의 미러 빌딩 설명](https://clujtourism.ro/en/portfolio/houses-of-roman-catholic-organization-mirror-buildings/) 과 [클루즈 카운티 도서관의 Piața Unirii 항목](https://www.bjc.ro/wiki/index.php/Pia%C5%A3a_Libert%C4%83%C5%A3ii). **문서 링크일 뿐**, 애플리케이션은 이들에 접근하지 않습니다.
+
+## 비고
+
+이 작업물은 측량 기반 디지털 트윈이 아니라 **대략적 지리 비율에 기반한 복셀 건축 해석** 입니다. 프레임률은 브라우저·뷰포트·GPU에 따라 달라지며, 검증 측정값은 `verification.json` 에 기록되어 있습니다.

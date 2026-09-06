@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>Piața Unirii — Living Voxel Cluj</title>
+  <title>Piața Unirii — 살아있는 복셀의 클루즈</title>
   <style>
     :root {
       --ink:#18201e;
@@ -60,28 +60,28 @@
   </style>
 </head>
 <body>
-  <canvas id="scene" aria-label="Interactive voxel reconstruction of Piața Unirii in Cluj-Napoca"></canvas>
+  <canvas id="scene" aria-label="클루즈나포카 Piața Unirii 의 인터랙티브 복셀 재현"></canvas>
   <div class="grain"></div>
   <div class="landmarks" id="landmarks" aria-hidden="true"></div>
   <header class="topbar">
-    <div class="brand"><div class="seal">M</div><div><h1>Piața Unirii</h1><p>Cluj-Napoca · Transylvania</p></div></div>
-    <div class="status"><i class="status-dot"></i><span id="fps">Living city · 60 fps</span></div>
+    <div class="brand"><div class="seal">M</div><div><h1>Piața Unirii</h1><p>클루즈나포카 · 트란실바니아</p></div></div>
+    <div class="status"><i class="status-dot"></i><span id="fps">살아있는 도시 · 60 fps</span></div>
   </header>
-  <section class="panel" aria-label="Scene controls">
+  <section class="panel" aria-label="장면 컨트롤">
     <div class="panel-head">
-      <div><div class="eyebrow">Interactive architectural miniature</div><div class="panel-title">St. Michael’s Church &amp; the old city</div></div>
-      <div class="mode"><i class="sun"></i><span id="modeLabel">Clear day</span></div>
+      <div><div class="eyebrow">인터랙티브 건축 미니어처</div><div class="panel-title">성 미하일 성당과 구시가지</div></div>
+      <div class="mode"><i class="sun"></i><span id="modeLabel">맑은 낮</span></div>
     </div>
     <div class="controls">
-      <button data-action="reset"><kbd>R</kbd>Re-centre</button>
-      <button data-action="fly"><kbd>F</kbd>Flyover</button>
-      <button data-action="time"><kbd>T</kbd>Sunset</button>
-      <button data-action="view"><kbd>V</kbd>Street view</button>
+      <button data-action="reset"><kbd>R</kbd>다시 중심</button>
+      <button data-action="fly"><kbd>F</kbd>플라이오버</button>
+      <button data-action="time"><kbd>T</kbd>노을</button>
+      <button data-action="view"><kbd>V</kbd>거리 뷰</button>
     </div>
   </section>
-  <div class="hint"><span>L · landmark labels</span><span>Left drag · orbit</span><span>Right drag · pan</span><span>Scroll · zoom</span></div>
-  <div class="loader" id="loader"><div class="loadmark"><div class="tower"></div><strong>Building Piața Unirii</strong><small>Assembling the living city</small></div></div>
-  <div class="error" id="error"><div><h2>This miniature needs WebGL 2</h2><p>Please open it in a current desktop browser with hardware acceleration enabled.</p></div></div>
+  <div class="hint"><span>L · 랜드마크 라벨</span><span>좌클릭 드래그 · 궤도 회전</span><span>우클릭 드래그 · 이동</span><span>스크롤 · 줌</span></div>
+  <div class="loader" id="loader"><div class="loadmark"><div class="tower"></div><strong>Piața Unirii 를 짓는 중</strong><small>살아있는 도시를 조립하고 있습니다</small></div></div>
+  <div class="error" id="error"><div><h2>이 미니어처는 WebGL 2 가 필요합니다</h2><p>하드웨어 가속을 켠 상태의 최신 데스크톱 브라우저로 열어 주세요.</p></div></div>
 
   <script>
   (() => {
@@ -464,16 +464,16 @@
     let sunsetTarget=0,sunset=0,labelsVisible=false,drag=null,last=performance.now(),elapsed=0,frames=0,fpsTime=0;
     const landmarkLayer=document.getElementById('landmarks');
     const labelData=[
-      {name:'St. Michael’s Church',kind:'Gothic landmark',point:[-4,94,-8],priority:0,maxDistance:560},
-      {name:'Matthias Corvinus Monument',kind:'Monumental ensemble',point:[-5,22,27],priority:1,maxDistance:440},
-      {name:'Bánffy Palace',kind:'Baroque palace',point:[114,36,3],priority:2,maxDistance:440},
-      {name:'Mirror Buildings',kind:'Historic gateway',point:[121,38,51],priority:3,maxDistance:420},
-      {name:'Former Hotel Continental',kind:'Historic landmark',point:[-108,38,84],priority:4,maxDistance:420},
-      {name:'Roman Napoca window',kind:'Archaeological display',point:[24,5,31],priority:5,maxDistance:350},
-      {name:'Southern fountain area',kind:'Public space',point:[31,8,62],priority:6,maxDistance:350},
-      {name:'Iuliu Maniu Street',kind:'Eastbound axis',point:[178,6,51],priority:7,maxDistance:380},
-      {name:'Bulevardul Eroilor',kind:'Southeast axis',point:[72,6,139],priority:8,maxDistance:380},
-      {name:'Memorandumului',kind:'Northwest axis',point:[-166,6,-85],priority:9,maxDistance:380}
+      {name:'성 미하일 성당',kind:'고딕 랜드마크',point:[-4,94,-8],priority:0,maxDistance:560},
+      {name:'마차이 코르비누스 동상',kind:'기마 동상대',point:[-5,22,27],priority:1,maxDistance:440},
+      {name:'반피 궁전',kind:'바로크 궁전',point:[114,36,3],priority:2,maxDistance:440},
+      {name:'미러 빌딩',kind:'역사 관문',point:[121,38,51],priority:3,maxDistance:420},
+      {name:'구 호텔 콘티넨탈',kind:'역사 호텔',point:[-108,38,84],priority:4,maxDistance:420},
+      {name:'로마 나포카 발굴 창',kind:'발굴 전시',point:[24,5,31],priority:5,maxDistance:350},
+      {name:'남쪽 분수대',kind:'공공 공간',point:[31,8,62],priority:6,maxDistance:350},
+      {name:'이울리우 마니우 거리',kind:'동측 축',point:[178,6,51],priority:7,maxDistance:380},
+      {name:'에로이러르 대로',kind:'남동 축',point:[72,6,139],priority:8,maxDistance:380},
+      {name:'메모란둘무루이 거리',kind:'북서 축',point:[-166,6,-85],priority:9,maxDistance:380}
     ];
     for(const label of labelData){const el=document.createElement('div');el.className='landmark-label';const name=document.createElement('strong'),kind=document.createElement('small');name.textContent=label.name;kind.textContent=label.kind;el.append(name,kind);landmarkLayer.appendChild(el);label.el=el;}
     function cameraPos(){const ce=Math.cos(camera.elevation);return [camera.target[0]+camera.distance*ce*Math.sin(camera.azimuth),camera.target[1]+camera.distance*Math.sin(camera.elevation),camera.target[2]+camera.distance*ce*Math.cos(camera.azimuth)];}
@@ -496,8 +496,8 @@
     function reset(){camera.target=[-2,12,-4];camera.azimuth=.73;camera.elevation=.47;camera.distance=306;camera.street=false;camera.fly=false;syncButtons();}
     function toggleView(){camera.fly=false;camera.street=!camera.street;if(camera.street){camera.target=[-5,13,-8];camera.azimuth=.18;camera.elevation=.105;camera.distance=118;}else{camera.target=[-2,12,-4];camera.azimuth=.73;camera.elevation=.47;camera.distance=306;}syncButtons();}
     function toggleFly(){camera.fly=!camera.fly;syncButtons();}
-    function toggleTime(){sunsetTarget=sunsetTarget?0:1;document.getElementById('modeLabel').textContent=sunsetTarget?'Golden-hour sunset':'Clear day';syncButtons();}
-    function syncButtons(){document.querySelector('[data-action="fly"]').classList.toggle('active',camera.fly);document.querySelector('[data-action="time"]').classList.toggle('active',!!sunsetTarget);document.querySelector('[data-action="view"]').classList.toggle('active',camera.street);document.querySelector('[data-action="view"]').lastChild.textContent=camera.street?' Aerial view':' Street view';}
+    function toggleTime(){sunsetTarget=sunsetTarget?0:1;document.getElementById('modeLabel').textContent=sunsetTarget?'골든아워 노을':'맑은 낮';syncButtons();}
+    function syncButtons(){document.querySelector('[data-action="fly"]').classList.toggle('active',camera.fly);document.querySelector('[data-action="time"]').classList.toggle('active',!!sunsetTarget);document.querySelector('[data-action="view"]').classList.toggle('active',camera.street);document.querySelector('[data-action="view"]').lastChild.textContent=camera.street?' 항공 뷰':' 거리 뷰';}
     const actions={reset,toggleFly,toggleTime,toggleView};
     document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>actions['toggle'+b.dataset.action[0].toUpperCase()+b.dataset.action.slice(1)]?.()||actions[b.dataset.action]?.()));
     addEventListener('keydown',e=>{if(e.repeat)return;const k=e.key.toLowerCase();if(k==='r')reset();if(k==='f')toggleFly();if(k==='t')toggleTime();if(k==='v')toggleView();if(k==='l')toggleLabels();});
@@ -518,7 +518,7 @@
       gl.uniformMatrix4fv(uni.vp,false,vp);gl.uniform3fv(uni.camera,eye);gl.uniform3fv(uni.sunDir,sunset?[.72,.36,.42]:[.43,.84,.34]);gl.uniform3fv(uni.sunColor,[mix(1,.98,sunset),mix(.98,.63,sunset),mix(.9,.39,sunset)]);gl.uniform3fv(uni.sky,sky);gl.uniform1f(uni.sunset,sunset);gl.uniform1f(uni.time,elapsed);
       for(const pool of gpuPools){if(pool.tier===1&&camera.distance>610)continue;gl.depthMask(!pool.transparent);gl.bindVertexArray(pool.vao);gl.drawArraysInstanced(gl.TRIANGLES,0,geoms[pool.mesh].count,pool.count);}
       updateLabels(vp,eye);
-      gl.depthMask(true);frames++;fpsTime+=dt;if(fpsTime>.75){document.getElementById('fps').textContent=`Living city · ${Math.round(frames/fpsTime)} fps`;frames=0;fpsTime=0;}
+      gl.depthMask(true);frames++;fpsTime+=dt;if(fpsTime>.75){document.getElementById('fps').textContent=`살아있는 도시 · ${Math.round(frames/fpsTime)} fps`;frames=0;fpsTime=0;}
       requestAnimationFrame(render);
     }
     syncButtons();requestAnimationFrame(render);setTimeout(()=>document.getElementById('loader').classList.add('done'),650);

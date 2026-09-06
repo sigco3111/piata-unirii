@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Three.js run comparison</title>
+  <title>Three.js 런 비교 뷰어</title>
   <style>
     * { box-sizing: border-box; }
     html, body { height: 100%; }
-    body { margin: 0; background: #111; color: #eee; font: 14px system-ui, sans-serif; }
+    body { margin: 0; background: #111; color: #eee; font: 14px system-ui, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; }
     header { display: flex; gap: 12px; align-items: center; padding: 10px 14px; border-bottom: 1px solid #333; }
     header strong { margin-right: auto; }
     main { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); height: calc(100% - 49px); }
@@ -23,41 +23,46 @@
   </style>
 </head>
 <body>
-  <header><strong>Run comparison</strong><span>Click a scene before using its keyboard controls.</span></header>
+  <header><strong>런 비교 뷰어</strong><span>각 장면을 먼저 클릭한 다음 키보드 단축키를 사용하세요.</span></header>
   <main id="comparison"></main>
   <script type="module">
     const root = document.querySelector('#comparison');
     const runs = await fetch('./runs.json').then(response => {
-      if (!response.ok) throw new Error(`Could not load runs.json (${response.status})`);
+      if (!response.ok) throw new Error(`runs.json 을 불러올 수 없습니다 (${response.status})`);
       return response.json();
     });
 
     if (!runs.length) {
       root.className = 'empty';
-      root.textContent = 'No runs yet.';
+      root.textContent = '아직 등록된 런이 없습니다.';
     } else {
+      // 한국어 라벨 매핑 — runs.json 의 model/effort 값을 한국어로 표시
+      const providerLabel = { 'OpenAI': 'OpenAI', 'Anthropic': 'Anthropic' };
+      const agentLabel = { 'Codex': 'Codex', 'Claude Code': 'Claude Code' };
+      const effortLabel = { 'xhigh': '최고 effort' };
+
       const formatStartedAt = value => {
-        if (!value) return 'unknown';
+        if (!value) return '알 수 없음';
         const date = new Date(value);
         return Number.isNaN(date.getTime())
           ? value
-          : new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'medium' }).format(date);
+          : new Intl.DateTimeFormat('ko-KR', { dateStyle: 'medium', timeStyle: 'medium' }).format(date);
       };
 
       const formatDuration = value => {
-        if (!Number.isFinite(value) || value < 0) return 'unknown';
+        if (!Number.isFinite(value) || value < 0) return '알 수 없음';
         const total = Math.floor(value);
         const hours = Math.floor(total / 3600);
         const minutes = Math.floor((total % 3600) / 60);
         const seconds = total % 60;
-        if (hours) return `${hours}h${minutes ? ` ${minutes}m` : ''}`;
-        if (minutes) return `${minutes}m${seconds ? ` ${seconds}s` : ''}`;
-        return `${seconds}s`;
+        if (hours) return `${hours}시간 ${minutes ? `${minutes}분 ` : ''}${seconds}초`.trim();
+        if (minutes) return `${minutes}분 ${seconds ? `${seconds}초` : ''}`.trim();
+        return `${seconds}초`;
       };
 
       const makePane = selectedIndex => {
         const section = document.createElement('section');
-        section.innerHTML = '<div class="bar"><select></select><span class="meta"></span><a target="_blank" rel="noopener">Open</a></div><iframe></iframe>';
+        section.innerHTML = '<div class="bar"><select></select><span class="meta"></span><a target="_blank" rel="noopener">새 창으로 열기</a></div><iframe></iframe>';
         const select = section.querySelector('select');
         const meta = section.querySelector('.meta');
         const link = section.querySelector('a');
@@ -71,8 +76,12 @@
           const src = `../runs/${encodeURIComponent(run.name)}/index.html`;
           const startedAt = formatStartedAt(run.startedAt);
           const duration = formatDuration(run.durationSeconds);
-          meta.textContent = `${run.provider || 'Unknown provider'} · ${run.agent || 'Unknown agent'} · ${run.model} · ${run.effort} · started ${startedAt} · duration ${duration}`;
+          const provider = providerLabel[run.provider] || run.provider || '공급사 미상';
+          const agent = agentLabel[run.agent] || run.agent || '에이전트 미상';
+          const effort = effortLabel[run.effort] || run.effort || '';
+          meta.textContent = `${provider} · ${agent} · ${run.model} · ${effort} · 시작 ${startedAt} · 소요 ${duration}`;
           link.href = src;
+          link.textContent = '새 창으로 열기';
           frame.src = src;
           frame.title = run.name;
         };

@@ -1,50 +1,50 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#e8e8de">
-  <meta name="description" content="An explorable voxel miniature of Piața Unirii, Cluj-Napoca. A little city, alive in the heart of Transylvania.">
-  <title>Piața Unirii — A living miniature</title>
+  <meta name="description" content="클루즈나포카 Piața Unirii 의 탐험 가능한 복셀 미니어처 — 트란실바니아 한복판의 살아있는 작은 도시.">
+  <title>Piața Unirii — 살아있는 미니어처</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232a4238'/%3E%3Cpath d='M14 49V31h26v18M44 49V22h10v27M43 22l6-15 6 15M12 31l15-13 15 13' fill='%23ece8d5'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="./style.css">
   <script type="importmap">{"imports":{"three":"./vendor/build/three.module.js"}}</script>
 </head>
 <body>
-  <main id="world" aria-label="Interactive three-dimensional miniature of Piața Unirii"></main>
+  <main id="world" aria-label="Piața Unirii 의 인터랙티브 3D 미니어처"></main>
   <div id="labels" aria-hidden="true"></div>
   <header class="topbar">
-    <div class="brand"><span class="brand-mark">u<span>·</span></span><div>PLACES, IN MINIATURE<span>A LIVING ATLAS / № 001</span></div></div>
-    <button id="time-button" class="weather" title="Change time of day (T)" aria-label="Change time of day"><span id="sun-symbol">☀</span><span id="time-name">Clear day</span><span class="separator"></span><span id="time-value">14:30</span><kbd>T</kbd></button>
+    <div class="brand"><span class="brand-mark">u<span>·</span></span><div>미니어처 속 장소들<span>살아있는 지도 백과 / 제001호</span></div></div>
+    <button id="time-button" class="weather" title="시간대 변경 (T)" aria-label="시간대 변경"><span id="sun-symbol">☀</span><span id="time-name">맑은 낮</span><span class="separator"></span><span id="time-value">14:30</span><kbd>T</kbd></button>
   </header>
   <aside class="intro">
-    <div class="eyebrow"><span class="live-dot"></span> ROMANIA <span class="small-rule"></span> 46.7694° N · 23.5899° E</div>
+    <div class="eyebrow"><span class="live-dot"></span> 루마니아 <span class="small-rule"></span> 46.7694° N · 23.5899° E</div>
     <h1>Piața Unirii<span>.</span></h1>
-    <p>A little world in the heart of Cluj.</p>
-    <div class="place-meta">CLUJ-NAPOCA <span>／</span> TRANSYLVANIA</div>
+    <p>클루즈 한복판의 작은 세계.</p>
+    <div class="place-meta">클루즈나포카 <span>／</span> 트란실바니아</div>
   </aside>
-  <aside class="map-card" aria-label="Square orientation map">
-    <div class="map-heading"><span>THE OLD TOWN</span><span id="camera-mode">AERIAL VIEW</span></div>
-    <svg id="minimap" viewBox="0 0 180 156" role="img" aria-label="Map with church, monument and current camera direction">
+  <aside class="map-card" aria-label="광장 방향 지도">
+    <div class="map-heading"><span>구시가지</span><span id="camera-mode">항공 뷰</span></div>
+    <svg id="minimap" viewBox="0 0 180 156" role="img" aria-label="성당·동상·현재 카메라 방향을 표시한 미니맵">
       <g fill="#b9b8a8"><path d="M22 19h22v28H22zM22 50h22v24H22zM22 77h22v25H22zM22 105h22v27H22zM51 8h22v15H51zM77 8h24v15H77zM105 8h26v15h-26zM138 26h25v36h-25zM138 66h25v22h-25zM138 99h25v32h-25zM50 138h33v13H50zM87 138h44v13H87z"/></g>
       <path d="M49 28h83v104H49z" fill="#e4dfca"/><path d="M64 43h12v9H64zM61 51h45v17H61z" fill="#708575"/>
       <path d="M108 54l8 6-8 7" fill="#708575"/><rect x="81" y="79" width="13" height="5" rx="1" fill="#667369"/><rect x="82" y="106" width="21" height="5" fill="#9cb0b0"/>
       <g id="map-eye" transform="translate(92 86)"><path d="M0 0l-13 43h26Z" fill="#bc7941" opacity=".16"/><path d="M-4 38h8l-4-7z" fill="#95572f"/></g>
       <path d="M169 12V3m-3 4 3-4 3 4" stroke="#4c6153" fill="none"/><text x="168" y="23" font-size="7" fill="#4c6153">N</text>
     </svg>
-    <div class="map-footer"><span><i></i> YOU ARE EXPLORING</span><span>160 × 220 m</span></div>
+    <div class="map-footer"><span><i></i> 탐험 중</span><span>160 × 220 m</span></div>
   </aside>
-  <nav class="toolbar" aria-label="Scene controls">
-    <button id="reset-button" title="Re-centre (R)"><span class="tool-icon">⌖</span><span>Re-centre</span><kbd>R</kbd></button>
+  <nav class="toolbar" aria-label="장면 컨트롤">
+    <button id="reset-button" title="다시 중심 (R)"><span class="tool-icon">⌖</span><span>다시 중심</span><kbd>R</kbd></button>
     <span class="tool-divider"></span>
-    <button id="fly-button" aria-pressed="false" title="Cinematic flyover (F)"><span class="tool-icon">▷</span><span>Flyover</span><kbd>F</kbd></button>
-    <button id="view-button" aria-pressed="false" title="Street-level / aerial view (V)"><span class="tool-icon">▱</span><span id="view-label">Street view</span><kbd>V</kbd></button>
-    <button id="labels-button" aria-pressed="false" title="Landmark labels (L)"><span class="tool-icon label-icon">♧</span><span>Landmarks</span><kbd>L</kbd></button>
+    <button id="fly-button" aria-pressed="false" title="시네마틱 플라이오버 (F)"><span class="tool-icon">▷</span><span>플라이오버</span><kbd>F</kbd></button>
+    <button id="view-button" aria-pressed="false" title="거리 / 항공 뷰 (V)"><span class="tool-icon">▱</span><span id="view-label">거리 뷰</span><kbd>V</kbd></button>
+    <button id="labels-button" aria-pressed="false" title="랜드마크 라벨 (L)"><span class="tool-icon label-icon">♧</span><span>랜드마크</span><kbd>L</kbd></button>
   </nav>
-  <footer class="footer"><span>DRAG TO ORBIT <i>·</i> RIGHT-DRAG TO PAN <i>·</i> SCROLL TO EXPLORE</span><span class="scene-status"><span class="live-dot"></span> A CITY IN MOTION <span id="fps"></span></span></footer>
+  <footer class="footer"><span>드래그하여 회전 <i>·</i> 우클릭 드래그로 이동 <i>·</i> 스크롤로 줌</span><span class="scene-status"><span class="live-dot"></span> 살아가는 도시 <span id="fps"></span></span></footer>
   <div id="toast" role="status" aria-live="polite"></div>
-  <div id="loading"><div class="loading-mark">u.</div><p>Building a little Cluj<span>Setting the stones. Raising the rooftops.</span></p><div class="loading-line"></div></div>
-  <div id="error" role="alert" hidden><h2>The miniature couldn’t open.</h2><p id="error-message"></p><button onclick="location.reload()">Try again</button></div>
+  <div id="loading"><div class="loading-mark">u.</div><p>클루즈를 짓는 중<span>석재를 깐다, 지붕을 올린다.</span></p><div class="loading-line"></div></div>
+  <div id="error" role="alert" hidden><h2>미니어처를 열 수 없습니다.</h2><p id="error-message"></p><button onclick="location.reload()">다시 시도</button></div>
   <script src="./app.js" defer></script>
 </body>
 </html>

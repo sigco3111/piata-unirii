@@ -2,17 +2,17 @@ import * as THREE from './vendor/build/three.module.js';
 
 // Metres. East = +X, north = -Z. Architectural anchors never use randomness.
 export const LANDMARKS = [
-  {name:'St. Michael’s Church',sub:'Biserica Sfântul Mihail',p:[-8,45,-30],rank:0},
-  {name:'Matthias Corvinus',sub:'Monumental ensemble · 1902',p:[-7,11,12],rank:1},
-  {name:'Bánffy Palace',sub:'Muzeul de Artă',p:[105,21,-64],rank:2},
-  {name:'The Mirror Buildings',sub:'Strada Iuliu Maniu',p:[99,29,21],rank:3},
-  {name:'Hotel Continental',sub:'Former New York Hotel',p:[-104,27,106],rank:4},
-  {name:'Roman Napoca',sub:'Archaeological window',p:[14,2,25],rank:5},
-  {name:'Southern fountains',sub:'Water & public space',p:[11,2,73],rank:6},
-  {name:'Bulevardul Eroilor',sub:'To the eastern old town',p:[150,4,112],rank:7},
-  {name:'Strada Memorandumului',sub:'To the western old town',p:[-149,4,-103],rank:8},
-  {name:'Regele Ferdinand',sub:'Towards the Someș',p:[72,4,-181],rank:9},
-  {name:'Strada Napoca',sub:'The southern old town',p:[-165,4,125],rank:10}
+  {name:'성 미하일 성당',sub:'Biserica Sfântul Mihail',p:[-8,45,-30],rank:0},
+  {name:'마차이 코르비누스 동상',sub:'기마 동상대 · 1902년',p:[-7,11,12],rank:1},
+  {name:'반피 궁전',sub:'미술관(Muzeul de Artă)',p:[105,21,-64],rank:2},
+  {name:'미러 빌딩',sub:'이울리우 마니우 거리(Strada Iuliu Maniu)',p:[99,29,21],rank:3},
+  {name:'구 호텔 콘티넨탈',sub:'구 뉴욕 호텔',p:[-104,27,106],rank:4},
+  {name:'로마 나포카 발굴 창',sub:'고대 로마 발굴 전시',p:[14,2,25],rank:5},
+  {name:'남쪽 분수대',sub:'물과 공공 공간',p:[11,2,73],rank:6},
+  {name:'에로이러르 대로',sub:'동쪽 구시가지로',p:[150,4,112],rank:7},
+  {name:'메모란둘무루이 거리',sub:'서쪽 구시가지로',p:[-149,4,-103],rank:8},
+  {name:'레겔레 페르디난드 거리',sub:'소메시 강 방향',p:[72,4,-181],rank:9},
+  {name:'나포카 거리',sub:'남쪽 구시가지',p:[-165,4,125],rank:10}
 ];
 export function seeded(seed=19021316){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 const rng=seeded();

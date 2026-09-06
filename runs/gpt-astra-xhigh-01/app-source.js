@@ -8,8 +8,8 @@ import {createWorld,LANDMARKS} from './world.js';
   window.addEventListener('error',e=>{if(!window.__MINIATURE__?.ready)fail(e.error||e.message);});
   window.addEventListener('unhandledrejection',e=>fail(e.reason));
   let renderer;
-  try {renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});}catch(e){fail(new Error('This scene needs WebGL 2. Enable hardware acceleration in your browser, then reload.'));return;}
-  const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('aria-label','3D square. Drag to orbit, right-drag to pan, scroll to zoom. R re-centres, F flies, T changes light, V changes view, L shows landmarks.');$('world').appendChild(canvas);
+  try {renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});}catch(e){fail(new Error('이 장면은 WebGL 2 가 필요합니다. 브라우저에서 하드웨어 가속을 켠 뒤 새로고침하세요.'));return;}
+  const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('aria-label','3D 광장. 드래그하여 궤도 회전, 우클릭 드래그로 이동, 스크롤로 줌. R 은 다시 중심, F 는 플라이오버, T 는 시간대, V 는 뷰, L 은 랜드마크.');$('world').appendChild(canvas);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.6));renderer.setSize(innerWidth,innerHeight);renderer.setClearColor('#d6e5e0');
   renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
   renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.shadowMap.autoUpdate=false;
@@ -28,17 +28,17 @@ import {createWorld,LANDMARKS} from './world.js';
   const labelNodes=LANDMARKS.map(l=>{const el=document.createElement('div');el.className='landmark';el.textContent=l.name;const small=document.createElement('small');small.textContent=l.sub;el.appendChild(small);$('labels').appendChild(el);el.style.display='none';return {...l,el,point:new THREE.Vector3(...l.p)};});
   function toast(text){$('toast').textContent=text;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2400);}
   function updateUI(){
-    $('time-name').textContent=state.sunset?'Golden hour':'Clear day';$('time-value').textContent=state.sunset?'19:15':'14:30';$('sun-symbol').textContent=state.sunset?'◒':'☀';
+    $('time-name').textContent=state.sunset?'골든아워':'맑은 낮';$('time-value').textContent=state.sunset?'19:15':'14:30';$('sun-symbol').textContent=state.sunset?'◒':'☀';
     $('fly-button').setAttribute('aria-pressed',String(state.flying));$('labels-button').setAttribute('aria-pressed',String(state.labels));$('view-button').setAttribute('aria-pressed',String(state.street));
-    $('view-label').textContent=state.street?'Aerial view':'Street view';$('camera-mode').textContent=state.flying?'CINEMATIC':state.street?'STREET VIEW':'AERIAL VIEW';
+    $('view-label').textContent=state.street?'항공 뷰':'거리 뷰';$('camera-mode').textContent=state.flying?'시네마틱':state.street?'거리 뷰':'항공 뷰';
     document.body.classList.toggle('sunset',state.sunset);$('labels').setAttribute('aria-hidden',String(!state.labels));
   }
   function stopFly(){if(state.flying){state.flying=false;Object.assign(wanted,view);wantedTarget.copy(target);updateUI();}}
-  function recenter(){stopFly();state.street=false;Object.assign(wanted,{theta:-.18,phi:1.19,radius:346});wantedTarget.set(-3,9,-9);updateUI();toast('Back to the heart of Cluj');}
-  function toggleTime(){state.sunset=!state.sunset;updateUI();toast(state.sunset?'Golden hour · The square settles into evening':'Clear day · A bright afternoon in Cluj');}
-  function toggleLabels(){state.labels=!state.labels;updateUI();toast(state.labels?'Landmark labels on':'Landmark labels off');}
-  function toggleFly(){state.flying=!state.flying;if(state.flying){flyStart=state.elapsed;state.street=false;toast('Cinematic flyover · Drag or press F to return');}else{Object.assign(wanted,view);wantedTarget.copy(target);toast('Flyover paused');}updateUI();}
-  function toggleView(){stopFly();state.street=!state.street;if(state.street){wantedTarget.set(-8,14,-25);const position=new THREE.Vector3(24,3.1,44),delta=position.sub(wantedTarget);wanted.radius=delta.length();wanted.theta=Math.atan2(delta.x,delta.z);wanted.phi=Math.acos(delta.y/wanted.radius);toast('Street view · Beside the monument');}else{wantedTarget.set(-3,9,-9);Object.assign(wanted,{theta:-.18,phi:1.19,radius:346});toast('Aerial overview');}updateUI();}
+  function recenter(){stopFly();state.street=false;Object.assign(wanted,{theta:-.18,phi:1.19,radius:346});wantedTarget.set(-3,9,-9);updateUI();toast('클루즈의 중심으로 돌아왔습니다');}
+  function toggleTime(){state.sunset=!state.sunset;updateUI();toast(state.sunset?'골든아워 · 광장이 저녁으로 가라앉습니다':'맑은 낮 · 클루즈의 밝은 오후');}
+  function toggleLabels(){state.labels=!state.labels;updateUI();toast(state.labels?'랜드마크 라벨 켜짐':'랜드마크 라벨 꺼짐');}
+  function toggleFly(){state.flying=!state.flying;if(state.flying){flyStart=state.elapsed;state.street=false;toast('시네마틱 플라이오버 · 드래그하거나 F 키로 종료');}else{Object.assign(wanted,view);wantedTarget.copy(target);toast('플라이오버 일시정지');}updateUI();}
+  function toggleView(){stopFly();state.street=!state.street;if(state.street){wantedTarget.set(-8,14,-25);const position=new THREE.Vector3(24,3.1,44),delta=position.sub(wantedTarget);wanted.radius=delta.length();wanted.theta=Math.atan2(delta.x,delta.z);wanted.phi=Math.acos(delta.y/wanted.radius);toast('거리 뷰 · 동상 옆');}else{wantedTarget.set(-3,9,-9);Object.assign(wanted,{theta:-.18,phi:1.19,radius:346});toast('항공 뷰');}updateUI();}
   $('reset-button').addEventListener('click',recenter);$('time-button').addEventListener('click',toggleTime);$('fly-button').addEventListener('click',toggleFly);$('labels-button').addEventListener('click',toggleLabels);$('view-button').addEventListener('click',toggleView);
   window.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||e.repeat)return;if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;const action={r:recenter,t:toggleTime,f:toggleFly,l:toggleLabels,v:toggleView}[e.key.toLowerCase()];if(action){e.preventDefault();action();}});
   canvas.addEventListener('contextmenu',e=>e.preventDefault());

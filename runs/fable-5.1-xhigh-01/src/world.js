@@ -120,15 +120,15 @@ export class World {
 
   async build(onProgress = () => {}) {
     const phases = [
-      ['Laying the stone paving', () => this.buildGround()],
-      ['Raising St. Michael’s Church', () => this.buildChurch()],
-      ['Casting the Matthias Corvinus ensemble', () => this.buildMonument()],
-      ['Building the perimeter façades', () => this.buildPerimeter()],
-      ['Growing the old-town fabric', () => this.buildCity()],
-      ['Shaping the Transylvanian hills', () => this.buildHills()],
-      ['Planting lindens and sycamores', () => this.buildProps()],
-      ['Merging voxel geometry', () => this.finalizeStatic()],
-      ['Populating the square', () => this.buildAgents()],
+      ['석재 포장을 깔다', () => this.buildGround()],
+      ['성 미하일 성당을 올리다', () => this.buildChurch()],
+      ['마차이 코르비누스 동상을 주조하다', () => this.buildMonument()],
+      ['광장 둘레 파사드를 짓다', () => this.buildPerimeter()],
+      ['구시가지 패브릭을 자라게 하다', () => this.buildCity()],
+      ['트란실바니아 구릉을 빚다', () => this.buildHills()],
+      ['보리수와 양버즘나무를 심다', () => this.buildProps()],
+      ['복셀 지오메트리를 병합하다', () => this.finalizeStatic()],
+      ['광장에 사람들을 배치하다', () => this.buildAgents()],
     ];
     for (let i = 0; i < phases.length; i++) {
       const [label, fn] = phases[i];
@@ -138,7 +138,7 @@ export class World {
       await fn();
       console.info(`[world] ${label}: ${(performance.now() - t0).toFixed(0)} ms`);
     }
-    onProgress('Ready', 1);
+    onProgress('준비 완료', 1);
     this.scene.add(this.group);
     this.scene.add(this.dynamic);
     this.built = true;
