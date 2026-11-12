@@ -4,6 +4,10 @@
 
 모든 런은 [`prompt.md`](prompt.md)의 동일한 브리프를 구현합니다 — 루마니아 **클루즈나포카(Cluj-Napoca)의 Piața Unirii** 를 복셀 아트 시뮬레이션으로 만든 것으로, **성 미하일 성당**(Biserica Sfântul Mihail)과 **마차이 코르비누스 동상대**(Matthias Corvinus Monumental Ensemble)를 중심으로 궤도 카메라, 시네마틱 플라이오버(Flyover), 시간대 토글을 제공합니다.
 
+## 📸 실제 실행 화면
+
+![피아타 우니리 3D 재현 실제 화면](13-piata-unirii.jpg)
+
 ## 디렉터리 구성
 
 - `prompt.md` — 모든 에이전트에게 공통으로 주어진 장면 명세서입니다.
